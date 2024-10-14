@@ -1,0 +1,104 @@
+{
+  description = "A simple NixOS flake";
+  # override the default substituters
+
+  outputs = inputs@{ self, nixpkgs, home-manager, hyprland, yazi, ... }:
+    let
+      #   #   selfPkgs = import ./pkgs;
+      user = "kotori";
+    in
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs user yazi; };
+          modules = [
+            ./module/default.nix
+            ./hosts/default.nix
+            ./pkgs/default.nix
+            ./overlays/yazi.nix
+            inputs.daeuniverse.nixosModules.daed
+            inputs.impermanence.nixosModules.impermanence
+            inputs.sops-nix.nixosModules.sops
+            inputs.nur.nixosModules.nur
+
+            ({
+              nixpkgs.overlays = [
+                (final: prev: {
+                  aysixi = inputs.aysixi.packages."${prev.system}";
+                })
+              ];
+            })
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${user} = import ./home/default.nix;
+              home-manager.extraSpecialArgs = { inherit inputs user; };
+            }
+          ];
+        };
+      };
+
+      homeConfigurations."${user}@nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          inputs.hyprland.homeManagerModules.default
+          inputs.nur.hmModules.nur
+        ];
+      };
+    };
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    impermanence.url = "github:nix-community/impermanence";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nvim-flake.url = "github:aysixi/nvim-flake";
+    # nvim-flake.url = "github:Ruixi-rebirth/nvim-flake";
+    aysixi = {
+      url = "github:aysixi/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur.url = "github:nix-community/NUR";
+    # daeuniverse.url = "path:/home/kotori/Desktop/daed";
+    daeuniverse.url = "github:daeuniverse/flake.nix/unstable";
+    sops-nix.url = "github:Mic92/sops-nix";
+    yazi.url = "github:sxyazi/yazi";
+  };
+
+
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://ruixi-rebirth.cachix.org"
+      "https://xddxdd.cachix.org"
+      "https://daeuniverse.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "ruixi-rebirth.cachix.org-1:sWs3V+BlPi67MpNmP8K4zlA3jhPCAvsnLKi4uXsiLI4="
+      "xddxdd.cachix.org-1:ay1HJyNDYmlSwj5NXQG065C8LfoqqKaTNCyzeixGjf8="
+      "daeuniverse.cachix.org-1:8hRIzkQmAKxeuYY3c/W1I7QbZimYphiPX/E7epYNTeM="
+    ];
+    trusted-users = [ "root" "@wheel" ];
+  };
+}
