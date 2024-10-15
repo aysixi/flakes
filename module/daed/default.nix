@@ -131,7 +131,11 @@
   		filter: subtag(ecy) && name(keyword: '香港')
   		policy: min_avg10
 
-  	}
+    }
+    blockCN {
+        filter: subtag(ecy) && !name(keyword: '香港')
+        policy: min_avg10
+    }
   	r18 {
   		filter: subtag(ecy) && name(keyword: '台湾')
   		filter: subtag(ecy) && name(keyword: '土耳其')
@@ -167,10 +171,10 @@
       pname(git) -> proxy
       
 
-      domain(geosite:google) -> proxy
-      domain(geosite:openai) -> tw
-      domain(regex:'.openai\.com$') -> tw
-      domain(regex:'.chatgpt\.com$') -> tw
+      domain(geosite:google) -> blockCN
+      domain(geosite:openai) -> blockCN
+      domain(regex:'.openai\.com$') -> blockCN
+      domain(regex:'.chatgpt\.com$') -> blockCN
     
 
       dip(geoip:jp) -> jp

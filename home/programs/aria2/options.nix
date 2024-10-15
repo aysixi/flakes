@@ -22,7 +22,7 @@ in
       example = ''
         xxxx
       '';
-      type = types.path;
+      type = types.lines;
       description = ''
         config for aria2.
       '';
@@ -30,6 +30,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    xdg.configFile."aria2/aria2.conf" = mkIf (cfg.extraConfig != "") {
+      text = ''
+        # home-manager
+        ${cfg.extraConfig}
+      '';
+    };
     home.packages = [ cfg.package ];
     systemd.user.services = {
       aria2 = {
