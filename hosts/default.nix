@@ -17,6 +17,7 @@
           ../module/virtualisation
           ../module/steam.nix
           ../module/disk/default.nix
+          ../module/misskey/default.nix
           # ../module/nginx/nginx.nix
 
 

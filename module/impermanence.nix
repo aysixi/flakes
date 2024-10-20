@@ -9,6 +9,7 @@
         "/var/lib"
         "/etc/secureboot"
         "/etc/daed"
+        "/etc/nginx"
       ];
       files = [
         # "/etc/machine-id"
