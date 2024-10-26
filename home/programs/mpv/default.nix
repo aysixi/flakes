@@ -42,7 +42,7 @@ in
     config = {
       gpu-api = "opengl";
       gpu-context = "wayland";
-      hwdec = "auto-safe";
+      hwdec = "vappi";
       vo = "gpu";
       profile = "gpu-hq";
       script-opts = "ytdl_hook-ytdl_path=yt-dlp";

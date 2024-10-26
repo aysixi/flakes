@@ -1,20 +1,20 @@
 { pkgs, ... }:
 let
-  keyjump = {
-    yazi = {
-      url = "https://raw.githubusercontent.com/redbeardymcgee/yazi-plugins/main/keyjump.yazi/init.lua";
-      sha256 = "sha256-IP9GtFHxJWkW889fzqd4LogHjYE2ujk01/1ROP6KGMc=";
-    };
-  };
-  keyjumpyazi = keyjump.yazi;
-  keyjump-yazi = pkgs.fetchurl {
-    inherit (keyjumpyazi) url sha256;
-  };
+  # keyjump = {
+  #   yazi = {
+  #     url = "https://raw.githubusercontent.com/redbeardymcgee/yazi-plugins/main/keyjump.yazi/init.lua";
+  #     sha256 = "sha256-IP9GtFHxJWkW889fzqd4LogHjYE2ujk01/1ROP6KGMc=";
+  #   };
+  # };
+  # keyjumpyazi = keyjump.yazi;
+  # keyjump-yazi = pkgs.fetchurl {
+  #   inherit (keyjumpyazi) url sha256;
+  # };
 
   exifaudio = {
     yazi = {
       url = "https://raw.githubusercontent.com/sonico98/exifaudio.yazi/master/init.lua";
-      sha256 = "sha256-4yyYAL/YrGun4r0oiMvEQ+kB/mPAvHzTy82WjEPzUm8=";
+      sha256 = "sha256-Td6Vi1aqWo0CLvDKghFTe/xZr0L8tLGMCv7DYPldD3U=";
     };
   };
   exifaudio-yazi = pkgs.fetchurl {
@@ -41,7 +41,7 @@ in
     ".config/yazi/keymap.toml".source = ./keymap.toml;
     ".config/yazi/theme.toml".source = ./theme.toml;
     ".config/yazi/init.lua".source = ./init.lua;
-    ".config/yazi/plugins/keyjump.yazi/init.lua".source = "${keyjump-yazi}";
+    # ".config/yazi/plugins/keyjump.yazi/init.lua".source = "${keyjump-yazi}";
     ".config/yazi/plugins/exifaudio.yazi/init.lua".source = "${exifaudio-yazi}";
     # ".config/yazi/plugins/mediainfo.yazi/init.lua".source = "${mediainfo-yazi}";
   };
