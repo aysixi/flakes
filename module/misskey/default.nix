@@ -4,22 +4,30 @@
     allowedTCPPorts = [
       80
       443
+      20000
     ];
   };
 
   services.misskey = {
     enable = true;
     redis.createLocally = true;
+    # redis.passwordFile = ;
     database.createLocally = true;
+    # database.passwordFile = ;
     settings = {
       url = "http://misskey.lan";
       port = 3000;
+      redis = {
+        port = 6379;
+        host = "localhost";
+        # pass = ;
+      };
       db = {
         db = "misskey";
         user = "misskey";
         host = "/var/run/postgresql";
         # port = 5432;
-        # pass = "misskey"; 
+        # pass = ;
       };
     };
     reverseProxy = {
@@ -31,6 +39,7 @@
         serverName = "misskey.lan";
         sslCertificate = "/etc/nginx/crt.pem";
         sslCertificateKey = "/etc/nginx/key.pem";
+        # openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/key.pem -out /etc/nginx/crt.pem -days 365 -nodes
         onlySSL = true;
         listen = [
           {
@@ -39,14 +48,15 @@
             ssl = true;
           }
           {
-            addr = "[::1]";
+            addr = "[::]";
             port = 443;
             ssl = true;
           }
-          # {
-          #   addr = "0.0.0.0";
-          #   port = 80;
-          # }
+          {
+            addr = "[::]";
+            port = 20000;
+            ssl = true;
+          }
         ];
         locations = {
           "/" = {
@@ -85,6 +95,7 @@
           ssl_stapling on;
           ssl_stapling_verify on;
 
+          # penssl dhparam -out /etc/nginx/dhparam.pem 2048
           ssl_dhparam /etc/nginx/dhparam.pem;   
   
         '';
@@ -106,37 +117,6 @@
       inactive = "720m";
       useTempPath = false;
     };
-
-    # virtualHosts."misskey.lan" = {
-    #   enableACME = false;
-    #   listen = [
-    #     {
-    #       addr = "0.0.0.0";
-    #       port = 443;
-    #       ssl = true;
-    #     }
-    #   ];
-    #   # openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/key.pem -out /etc/nginx/crt.pem -days 365 -nodes
-    #   # penssl dhparam -out /etc/nginx/dhparam.pem 2048
-    #   sslCertificate = "/etc/nginx/crt.pem";
-    #   sslCertificateKey = "/etc/nginx/key.pem";
-    #   extraConfig = ''
-    #     ssl_protocols TLSv1.2 TLSv1.3;
-    #     ssl_prefer_server_ciphers on;
-    #     ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384";
-    #     ssl_session_cache shared:SSL:10m;
-    #     ssl_session_timeout 5m;
-    #     ssl_dhparam /etc/nginx/dhparam.pem;   
-    #   '';
-    #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:3000";
-    #     proxyWebsockets = true;
-    #     recommendedProxySettings = true;
-    #     extraConfig = ''
-    #       proxy_redirect off;
-    #     '';
-    #   };
-    # };
     virtualHosts."xxx" = {
       serverName = "misskey.lan";
       listen = [
@@ -145,7 +125,7 @@
           port = 80;
         }
         {
-          addr = "[::1]";
+          addr = "[::]";
           port = 80;
         }
       ];
@@ -156,16 +136,4 @@
       };
     };
   };
-
-  # services.postgresql = {
-  #   enable = true;
-  #   settings = {
-  #     port = 5432;
-  #   };
-  #   ensureDatabases = [ "mydatabase" ];
-  #   authentication = lib.mkOverride 10 ''
-  #     #type database DBuser origin-address auth-method
-  #     local all       all     trust
-  #   '';
-  # };
 }

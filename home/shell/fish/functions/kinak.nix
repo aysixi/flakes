@@ -33,7 +33,11 @@
                   restic -r rclone:restic-local: backup --tag Documents📚 ~/Documents/
                   echo -e "Documents OK🌟\n"
                   restic -r rclone:restic-local: backup --tag rclone🌌 ~/rclone/
-                  echo -e "rclone OK🌟\n"
+                  echo -e "rclone OK🌟\n" 
+                  rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P
+                  rclone sync ~/rclone/decrypt🔒 google:/rclone/decrypt🔒 -P
+                  rclone sync ~/.local/share/password-store google:/rclone/password-store -P
+                  echo -e "all in🌟\n"
               case "2"
                   echo -e "Start gc"
                   restic -r rclone:restic-local: forget --keep-last 1 --prune 

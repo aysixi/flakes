@@ -13,7 +13,7 @@
     package = pkgs.steam.override {
       extraPkgs = pkgs: [
         pkgs.noto-fonts
-        pkgs.noto-fonts-cjk
+        pkgs.noto-fonts-cjk-sans
         pkgs.noto-fonts-emoji
         pkgs.twemoji-color-font
         (pkgs.nerdfonts.override { fonts = [ "Hack" "JetBrainsMono" "Iosevka" "IosevkaTerm" "NerdFontsSymbolsOnly" "DaddyTimeMono" ]; }) #fonts name can get in ``https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix`
@@ -26,6 +26,6 @@
   };
   environment.systemPackages = [
     # pkgs.protontricks
-    pkgs.r2modman
+    # pkgs.r2modman
   ];
 }

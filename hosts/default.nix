@@ -17,7 +17,7 @@
           ../module/virtualisation
           ../module/steam.nix
           ../module/disk/default.nix
-          # ../module/misskey/default.nix
+          ../module/misskey/default.nix
 
 
           inputs.home-manager.nixosModules.home-manager

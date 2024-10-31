@@ -101,7 +101,7 @@
   	}
   	routing {
   	  request {
-  		qtype(aaaa) -> reject
+  		# qtype(aaaa) -> reject
   		qname(geosite:category-ads-all) -> reject
   		qname(geosite:openai) -> googledns
   		qname(geosite:bilibili) -> alidns
@@ -168,6 +168,7 @@
       #pname(steam) -> direct
       #pname(telegram-desktop) -> direct
       pname(100orange.exe) -> direct
+      pname(AstralParty.exe) -> direct
       pname(git) -> proxy
       
 
