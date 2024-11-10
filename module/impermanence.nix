@@ -17,6 +17,7 @@
       ];
       users.${user} = {
         directories = [
+          "真紅の魔法書"
           # "Blog"
           "Downloads"
           "Music"

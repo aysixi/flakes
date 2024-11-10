@@ -1,4 +1,4 @@
-{ self, pkgs, inputs, lib, ... }:
+{ self, pkgs, inputs, lib, fetchFromGitHub, ... }:
 {
   nix = {
     channel.enable = false;
@@ -67,24 +67,12 @@
         });
       })
 
-
-      # (final: prev: {
-      #   aysixi.rime-ice = prev.aysixi.rime-ice.overrideAttrs (finalAttrs: previousAttrs: {
-      #     installPhase = ''
-      #       mkdir -p $out/share/rime-data
-      #       cp -r * $out/share/rime-data/
-      #       cp ${pkgs.aysixi.fcitx5-pinyin-zhwiki}/share/fcitx5/pinyin/dictionaries/zhwiki.dict $out/share/rime-data/cn_dicts/
-      #       cp ${pkgs.aysixi.fcitx5-pinyin-moegirl}/share/fcitx5/pinyin/dictionaries/fcitx5-pinyin-moegirl.dict $out/share/rime-data/cn_dicts/
-      #
-      #     '';
-      #   });
-      # })
-
       (final: prev: {
         fcitx5-rime = prev.fcitx5-rime.override {
-          rimeDataPkgs = with pkgs.aysixi; [
-            rime-icea
-          ];
+          rimeDataPkgs = with pkgs.aysixi;
+            [
+              rime-icea
+            ];
         };
       })
     ];

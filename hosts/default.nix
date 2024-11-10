@@ -14,7 +14,7 @@
           ../module/impermanence.nix
           ../module/desktop.nix
           ../module/fonts.nix
-          ../module/virtualisation
+          # ../module/virtualisation
           ../module/steam.nix
           ../module/disk/default.nix
           ../module/misskey/default.nix

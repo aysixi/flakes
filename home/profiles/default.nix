@@ -1,6 +1,6 @@
 { inputs, withSystem, module_args, ... }:
 let
-  user = "kotori";
+  user = "mafuyu";
 
   sharedModules = [
     (import ../. { inherit user; })

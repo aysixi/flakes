@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "minimal";
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;

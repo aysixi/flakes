@@ -34,16 +34,21 @@
                   echo -e "Documents OK🌟\n"
                   restic -r rclone:restic-local: backup --tag rclone🌌 ~/rclone/
                   echo -e "rclone OK🌟\n" 
-                  rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P
-                  rclone sync ~/rclone/decrypt🔒 google:/rclone/decrypt🔒 -P
-                  rclone sync ~/.local/share/password-store google:/rclone/password-store -P
-                  echo -e "all in🌟\n"
+                  restic -r rclone:restic-local: backup --tag 真紅の魔法書📖 ~/真紅の魔法書/
+                  echo -e "真紅の魔法書 OK🌟\n"
               case "2"
                   echo -e "Start gc"
                   restic -r rclone:restic-local: forget --keep-last 1 --prune 
               case "3"
                   echo -e "Start sync"
                   rclone sync ~/restic google:restic -P
+                  rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P
+                  rclone sync ~/rclone/decrypt🔒 google:/rclone/decrypt🔒 -P
+                  tar -czvf ~/password-store.tar.gz ~/.local/share/password-store/
+                  age -p -o ~/password-store.tar.gz.age ~/password-store.tar.gz 
+                  rclone copy ~/password-store.tar.gz.age google:/rclone/ -P
+                  echo -e "all in🌟\n"
+
               case "4"
                   echo -e "Print snapshots"
                   restic -r rclone:restic-local: snapshots

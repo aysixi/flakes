@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   networking.firewall = {
     allowedTCPPorts = [
@@ -10,10 +10,13 @@
 
   services.misskey = {
     enable = true;
+    package = pkgs.paricofe;
     redis.createLocally = true;
     # redis.passwordFile = ;
     database.createLocally = true;
     # database.passwordFile = ;
+    meilisearch.createLocally = true;
+    # meilisearch.keyFile ;
     settings = {
       url = "http://misskey.lan";
       port = 3000;
@@ -29,6 +32,11 @@
         # port = 5432;
         # pass = ;
       };
+      # meilisearch = {
+      #   ssl = true;
+      #   port = 7700;
+      #   host = "localhost";
+      # };
     };
     reverseProxy = {
       enable = true;
@@ -79,7 +87,6 @@
               proxy_cache_use_stale updating;
               proxy_force_ranges on;
               add_header X-Cache $upstream_cache_status;
-
             '';
           };
         };
@@ -97,13 +104,15 @@
 
           # penssl dhparam -out /etc/nginx/dhparam.pem 2048
           ssl_dhparam /etc/nginx/dhparam.pem;   
-  
         '';
       };
-
-
     };
   };
+
+  services.postgresql.extraPlugins = with pkgs; [
+    postgresql15JitPackages.pgroonga
+  ];
+
 
   services.nginx = {
     enable = true;
