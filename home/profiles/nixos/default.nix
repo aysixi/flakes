@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, self, ... }:
 {
   imports =
     [
@@ -12,6 +12,14 @@
     ];
 
   wayland.windowManager.hyprland = lib.mkIf config.wayland.windowManager.hyprland.enable { };
+  nixpkgs = {
+    config = {
+      allowBroken = true;
+      allowUnsupportedSystem = true;
+      allowUnfree = true;
+    };
+    overlays = [ self.overlays.default ];
+  };
 
   # Autostart QEMU/KVM in the first initialization of NixOS
   # realted link: https://nixos.wiki/wiki/Virt-manager

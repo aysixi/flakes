@@ -17,13 +17,13 @@
 stdenv.mkDerivation (finalAttrs: {
   pname = "paricofe";
 
-  version = "pari-20241009";
+  version = "pari";
 
   src = fetchFromGitHub {
     owner = "paricafe";
     repo = "misskey";
     rev = "refs/heads/" + finalAttrs.version;
-    hash = "sha256-R6x26GtZoGnuHhjn/CI8jkjTqnjeuKOT5LJshOHyVg0=";
+    hash = "sha256-g3CsRbCsf936rwJlgOOe3YeSOo2sI3XgPHA1ahDeLFs=";
     fetchSubmodules = true;
   };
 

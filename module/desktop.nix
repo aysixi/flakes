@@ -51,7 +51,6 @@
       slurp
       linux-wifi-hotspot
       scrcpy
-      cattpuccin-frappe-gtk
       qbittorrent-enhanced
     ] ++ [
       inputs.tlock.packages.${system}.default

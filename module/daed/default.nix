@@ -47,106 +47,104 @@
 
       enable_local_tcp_fast_redirect: false
 
-  	lan_interface: enp7s0
+      lan_interface: enp7s0
 
-  	wan_interface: auto
+      wan_interface: auto
 
-  	auto_config_kernel_parameter: true
+      auto_config_kernel_parameter: true
 
-  	tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1,2606:4700:4700::1111'
+      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1,2606:4700:4700::1111'
 
-  	tcp_check_http_method: HEAD
+      tcp_check_http_method: HEAD
 
-  	udp_check_dns: 'dns.google:53,8.8.8.8,2001:4860:4860::8888'
+      udp_check_dns: 'dns.google:53,8.8.8.8,2001:4860:4860::8888'
 
-  	check_interval: 120s
+      check_interval: 120s
 
-  	check_tolerance: 50ms
+      check_tolerance: 50ms
 
-  	dial_mode: domain++
+      dial_mode: domain++
 
-  	allow_insecure: false
+      allow_insecure: false
 
-  	sniffing_timeout: 100ms
+      sniffing_timeout: 100ms
 
-  	tls_implementation: utls
+      tls_implementation: utls
 
-  	utls_imitate: chrome_auto
+      utls_imitate: chrome_auto
 
-  	# mptcp: false
+      mptcp: false
 
-  	# bandwidth_max_tx: 26214400     
-  	# bandwidth_max_rx: 131072000
-  	}
-
-  # Subscriptions defined here will be resolved as nodes and merged as a part of the global node pool.
-  # Support to give the subscription a tag, and filter nodes from a given subscription in the group section.
-  subscription {
-
-      dau: '${config.sops.placeholder."dae/dau"}'
-      ecy: '${config.sops.placeholder."dae/ecy"}'
-
-   }
-
-  # Nodes defined here will be merged as a part of the global node pool.
-  node {
-
-  }
-
-  # See https://github.com/daeuniverse/dae/blob/main/docs/en/configuration/dns.md for full examples.
-  dns {
-  	upstream {
-  	  alidns: 'udp://223.5.5.5:53'
-  	  googledns: 'tcp+udp://8.8.8.8:53'
-  	}
-  	routing {
-  	  request {
-  		# qtype(aaaa) -> reject
-  		qname(geosite:category-ads-all) -> reject
-  		qname(geosite:openai) -> googledns
-  		qname(geosite:bilibili) -> alidns
-  		qname(geosite:cn) -> alidns
-  		fallback: googledns
-  	  }
-  	}
-  }
-
-  # Node group (outbound).
-  group {
-  	proxy {
-  		filter: subtag(ecy) 
-  		policy: min_avg10
-  	}
-  	jp {
-  		filter: subtag(ecy) && name(keyword: '日本')
-  		policy: min_avg10
-
-  	}
-  	tw {
-  		filter: subtag(ecy) && name(keyword: '台湾')
-  		policy: min_avg10
-
-  	}
-  	hk {
-  		filter: subtag(ecy) && name(keyword: '香港')
-  		policy: min_avg10
-
+      # bandwidth_max_tx: '200 mbps'
+      # bandwidth_max_rx: '1 gbps'
     }
-    blockCN {
-        filter: subtag(ecy) && !name(keyword: '香港')
-        policy: min_avg10
-    }
-  	r18 {
-  		filter: subtag(ecy) && name(keyword: '台湾')
-  		filter: subtag(ecy) && name(keyword: '土耳其')
-  		policy: min_avg10
 
-  	}
-  }
+      # Subscriptions defined here will be resolved as nodes and merged as a part of the global node pool.
+      # Support to give the subscription a tag, and filter nodes from a given subscription in the group section.
+      subscription {
+          dau: '${config.sops.placeholder."dae/dau"}'
+          ecy: '${config.sops.placeholder."dae/ecy"}'
+       }
 
-  # See https://github.com/daeuniverse/dae/blob/main/docs/en/configuration/routing.md for full examples.
-  routing {
-  #hals
+      # Nodes defined here will be merged as a part of the global node pool.
+      node {
+
+      }
+
+      # See https://github.com/daeuniverse/dae/blob/main/docs/en/configuration/dns.md for full examples.
+      dns {
+        upstream {
+          alidns: 'udp://223.5.5.5:53'
+          googledns: 'tcp+udp://8.8.8.8:53'
+        }
+        routing {
+          request {
+          # qtype(aaaa) -> reject
+          qname(geosite:category-ads-all) -> reject
+          qname(geosite:openai) -> googledns
+          qname(geosite:bilibili) -> alidns
+          qname(geosite:cn) -> alidns
+          fallback: googledns
+          }
+        }
+      }
+
+      # Node group (outbound).
+      group {
+        proxy {
+          filter: subtag(ecy) 
+          policy: min_avg10
+        }
+        jp {
+          filter: subtag(ecy) && name(keyword: '日本')
+          policy: min_avg10
+
+        }
+        tw {
+          filter: subtag(ecy) && name(keyword: '台湾')
+          policy: min_avg10
+
+        }
+        hk {
+          filter: subtag(ecy) && name(keyword: '香港')
+          policy: min_avg10
+
+        }
+        blockCN {
+            filter: subtag(ecy) && !name(keyword: '香港')
+            policy: min_avg10
+        }
+        r18 {
+          filter: subtag(ecy) && name(keyword: '台湾')
+          filter: subtag(ecy) && name(keyword: '土耳其')
+          policy: min_avg10
+
+        }
+      }
+
+      # See https://github.com/daeuniverse/dae/blob/main/docs/en/configuration/routing.md for full examples.
+      routing {
+      #hals
 
       # 9.16
       pname(NetworkManager, systemd-resolved) -> direct
@@ -167,8 +165,6 @@
       #---------#
       #pname(steam) -> direct
       #pname(telegram-desktop) -> direct
-      pname(100orange.exe) -> direct
-      pname(AstralParty.exe) -> direct
       pname(git) -> proxy
       
 
@@ -195,7 +191,8 @@
       #domain(suffix: steampowered.com) -> direct
       domain(geosite:category-games@cn) -> direct
       domain(suffix: steamserver.net) -> direct
-      domain(geosite:steam@cn) -> direct
+      domain(geosite:steam@cn) -> direct 
+      domain(star-engine.com) -> direct
       domain(geosite:steam) -> proxy
       
       #-------# 

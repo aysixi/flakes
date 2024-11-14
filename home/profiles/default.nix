@@ -1,4 +1,4 @@
-{ inputs, withSystem, module_args, ... }:
+{ inputs, withSystem, module_args, self, ... }:
 let
   user = "mafuyu";
 
@@ -30,6 +30,7 @@ in
       "${user}@nixos" = homeManagerConfiguration {
         modules = homeImports."${user}@nixos";
         inherit pkgs;
+        extraSpecialArgs = { inherit inputs user self; };
       };
       "${user}@wsl" = homeManagerConfiguration {
         modules = homeImports."${user}@wsl";

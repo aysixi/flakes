@@ -43,7 +43,6 @@
                   echo -e "Start sync"
                   rclone sync ~/restic google:restic -P
                   rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P
-                  rclone sync ~/rclone/decrypt🔒 google:/rclone/decrypt🔒 -P
                   tar -czvf ~/password-store.tar.gz ~/.local/share/password-store/
                   age -p -o ~/password-store.tar.gz.age ~/password-store.tar.gz 
                   rclone copy ~/password-store.tar.gz.age google:/rclone/ -P

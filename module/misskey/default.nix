@@ -1,50 +1,70 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
-  networking.firewall = {
-    allowedTCPPorts = [
-      80
-      443
-      20000
-    ];
+  sops.secrets = {
+    # "misskey/database" = { mode = "0744"; };
+    "misskey/redis" = { mode = "0744"; };
+    "misskey/meilisearch" = { mode = "0744"; };
+    "misskey/meilisearch.key" = { mode = "0744"; };
   };
+
+  networking = {
+    firewall = {
+      allowedTCPPorts = [
+        80
+        443
+        20000
+      ];
+    };
+    hosts = {
+      "127.0.0.1" = [ "misskey.lan" ];
+    };
+  };
+
+  services.postgresql.extraPlugins = with pkgs; [
+    postgresql15JitPackages.pgroonga
+  ];
+
+  services.redis.servers.misskey.requirePassFile = config.sops.secrets."misskey/redis".path;
+  services.meilisearch.masterKeyEnvironmentFile = config.sops.secrets."misskey/meilisearch".path;
 
   services.misskey = {
     enable = true;
     package = pkgs.paricofe;
     redis.createLocally = true;
-    # redis.passwordFile = ;
+    redis.passwordFile = config.sops.secrets."misskey/redis".path;
     database.createLocally = true;
-    # database.passwordFile = ;
+    # database.passwordFile = config.sops.secrets."misskey/database".path;
     meilisearch.createLocally = true;
-    # meilisearch.keyFile ;
+    meilisearch.keyFile = config.sops.secrets."misskey/meilisearch.key".path;
     settings = {
       url = "http://misskey.lan";
-      port = 3000;
+      # port = 3000;
       redis = {
         port = 6379;
         host = "localhost";
-        # pass = ;
+        # pass = config.sops.secrets."misskey/redis".path;
       };
       db = {
         db = "misskey";
         user = "misskey";
+        port = 5432;
         host = "/var/run/postgresql";
-        # port = 5432;
-        # pass = ;
+        # pass = config.sops.secrets."misskey/database".path;
       };
-      # meilisearch = {
-      #   ssl = true;
-      #   port = 7700;
-      #   host = "localhost";
-      # };
+      meilisearch = {
+        # ssl = true;
+        port = 7700;
+        host = "localhost";
+        # apiKey = config.sops.secrets."misskey/meilisearch.key".path;
+      };
     };
     reverseProxy = {
       enable = true;
-      host = "misskey.lan";
+      host = "misskey.lan"; #  services.misskey.settings.url
       ssl = true;
       webserver.nginx = {
         enableACME = false;
-        serverName = "misskey.lan";
+        # serverName = ""; # bind reverseProxy.host
         sslCertificate = "/etc/nginx/crt.pem";
         sslCertificateKey = "/etc/nginx/key.pem";
         # openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/key.pem -out /etc/nginx/crt.pem -days 365 -nodes
@@ -68,7 +88,7 @@
         ];
         locations = {
           "/" = {
-            proxyPass = "http://127.0.0.1:3000";
+            proxyPass = "http://localhost:3000";
             proxyWebsockets = true;
             recommendedProxySettings = true;
             extraConfig = ''
@@ -109,11 +129,6 @@
     };
   };
 
-  services.postgresql.extraPlugins = with pkgs; [
-    postgresql15JitPackages.pgroonga
-  ];
-
-
   services.nginx = {
     enable = true;
     clientMaxBodySize = "80m";
@@ -127,7 +142,7 @@
       useTempPath = false;
     };
     virtualHosts."xxx" = {
-      serverName = "misskey.lan";
+      serverName = "misskey.lan"; # bind services.misskey.settings.url
       listen = [
         {
           addr = "0.0.0.0";
