@@ -1,4 +1,4 @@
-{ self, pkgs, inputs, lib, fetchFromGitHub, ... }:
+{ self, pkgs, inputs, lib, ... }:
 {
   nix = {
     channel.enable = false;

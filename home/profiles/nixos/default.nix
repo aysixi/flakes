@@ -1,4 +1,4 @@
-{ lib, config, self, ... }:
+{ lib, config, self, inputs, ... }:
 {
   imports =
     [
@@ -13,12 +13,18 @@
 
   wayland.windowManager.hyprland = lib.mkIf config.wayland.windowManager.hyprland.enable { };
   nixpkgs = {
-    config = {
-      allowBroken = true;
-      allowUnsupportedSystem = true;
-      allowUnfree = true;
-    };
-    overlays = [ self.overlays.default ];
+    # config = {
+    #   allowBroken = true;
+    #   allowUnsupportedSystem = true;
+    #   allowUnfree = true;
+    # };
+    overlays = [
+      self.overlays.default
+
+      # (final: prev: {
+      #   aysixi = inputs.aysixi.packages."${prev.system}";
+      # })
+    ];
   };
 
   # Autostart QEMU/KVM in the first initialization of NixOS

@@ -1,4 +1,4 @@
-{ inputs, user, sharedModules, homeImports, wslModules, self, ... }:
+{ inputs, user, sharedModules, homeImports, wslModules, ... }:
 {
   flake.nixosConfigurations =
     let
@@ -23,10 +23,8 @@
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
               users.${user}.imports = homeImports."${user}@nixos";
-              extraSpecialArgs = { inherit inputs user self; };
+              extraSpecialArgs = { inherit user; };
             };
           }
         ] ++ sharedModules;
