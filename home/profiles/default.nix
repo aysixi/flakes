@@ -14,6 +14,7 @@ let
   homeImports = {
     "${user}@nixos" = [ ./nixos ] ++ sharedModules;
     "${user}@wsl" = [ ./wsl ] ++ sharedModules;
+    "${user}@livecd" = [ ./livecd ] ++ sharedModules;
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
@@ -35,6 +36,10 @@ in
       };
       "${user}@wsl" = homeManagerConfiguration {
         modules = homeImports."${user}@wsl";
+        inherit pkgs;
+      };
+      "${user}@livecd" = homeManagerConfiguration {
+        modules = homeImports."${user}@livecd";
         inherit pkgs;
       };
     });

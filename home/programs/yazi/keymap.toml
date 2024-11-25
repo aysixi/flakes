@@ -320,6 +320,10 @@ keymap = [
   ], run = "cd ~/flakes", desc = "Go to the flakes directory" },
   { on = [
     "g",
+    "s",
+  ], run = "cd ~/真紅の魔法書", desc = "" },
+  { on = [
+    "g",
     "t",
   ], run = "cd /tmp", desc = "Go to the temporary directory" },
   { on = [

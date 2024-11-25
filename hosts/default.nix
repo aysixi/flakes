@@ -19,8 +19,6 @@
           ../module/disk/default.nix
           ../module/misskey/default.nix
 
-
-          inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
               users.${user}.imports = homeImports."${user}@nixos";
@@ -52,6 +50,22 @@
               };
             }
           ] ++ wslModules;
+      };
+
+      livecd = nixosSystem {
+        specialArgs = { inherit user; };
+        modules =
+          [
+            ./livecd
+            ../module/impermanence.nix
+            ../module/systemdboot.nix
+            {
+              home-manager = {
+                users.${user}.imports = homeImports."${user}@livecd";
+                extraSpecialArgs = { inherit user; };
+              };
+            }
+          ] ++ sharedModules;
       };
     };
 }

@@ -21,7 +21,7 @@
     };
   };
 
-  services.postgresql.extraPlugins = with pkgs; [
+  services.postgresql.extensions = with pkgs; [
     postgresql15JitPackages.pgroonga
   ];
 
@@ -123,7 +123,7 @@
           ssl_stapling on;
           ssl_stapling_verify on;
 
-          # penssl dhparam -out /etc/nginx/dhparam.pem 2048
+          # openssl dhparam -out /etc/nginx/dhparam.pem 2048
           ssl_dhparam /etc/nginx/dhparam.pem;
           add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
           proxy_headers_hash_max_size 1024;
