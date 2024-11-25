@@ -102,7 +102,7 @@
     isNormalUser = true;
     initialHashedPassword = "$y$j9T$owwwWsfU9sj/Qa3D3VvXK0$paUL1d.oyIC5nejR0GMG/TMBsY0X5FHh5TrhprMzTd2";
     description = "${user}";
-    shell = pkgs.fish;
+    shell = lib.mkIf (config.networking.hostName != "minimal") pkgs.fish;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII5gMaeV2ehMMUMd7jbIHT4PXCSGkYv7A0WiseMymMoP yuki"
     ];

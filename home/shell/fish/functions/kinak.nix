@@ -10,7 +10,7 @@
       while true
   		echo -e "1 to backup"
       	echo -e "2 to gc"
-  		echo -e "3 to sync"
+  		echo -e "3 to push"
   		echo -e "4 to print snapshots"
   		echo -e "5 to check repository"
   		echo -e "6 to forge <hashid>"
@@ -40,7 +40,7 @@
                   echo -e "Start gc"
                   restic -r rclone:restic-local: forget --keep-last 1 --prune 
               case "3"
-                  echo -e "Start sync"
+                  echo -e "Start push"
                   rclone sync ~/restic google:restic -P
                   rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P
                   tar -czvf ~/password-store.tar.gz ~/.local/share/password-store/
@@ -65,7 +65,7 @@
   				restic -r rclone:restic-local: mount ~/mnt
   			case "8"
   				echo -e "start pull \n"
-  				rclone sync google:restic ~/restic 
+  				rclone sync google:restic ~/restic -P
   			case "9"
   				read -P "Custom command: " whatCommand
   				eval $whatCommand

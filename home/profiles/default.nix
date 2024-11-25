@@ -1,6 +1,7 @@
 { inputs, withSystem, module_args, ... }:
 let
   user = "mafuyu";
+  domain = "misskey.lan";
 
   sharedModules = [
     (import ../. { inherit user; })
@@ -21,7 +22,7 @@ in
 {
   imports = [
     # we need to pass this to NixOS' HM module
-    { _module.args = { inherit homeImports user; }; }
+    { _module.args = { inherit homeImports user domain; }; }
   ];
 
 

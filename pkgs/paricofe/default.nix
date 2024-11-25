@@ -23,7 +23,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "paricafe";
     repo = "misskey";
     rev = "refs/heads/" + finalAttrs.version;
-    hash = "sha256-g3CsRbCsf936rwJlgOOe3YeSOo2sI3XgPHA1ahDeLFs=";
+    hash = "sha256-XoAn3be+h4O1Y/rtiILjn2Xmx0x+tTMylv+E9kXeu7Y=";
     fetchSubmodules = true;
   };
 
@@ -37,7 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
   # https://nixos.org/manual/nixpkgs/unstable/#javascript-pnpm
   pnpmDeps = pnpm.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-R3Axx4mFUnK8fDE1Aib7BIU7jD470ODny0mkcLxGWsI=";
+    hash = "sha256-rOhi13+bRLJ4RSAXIL37/RXe1zVAMwFKKkK1Wq2fm1g=";
   };
 
   buildPhase = ''

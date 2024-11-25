@@ -1,4 +1,4 @@
-{ inputs, user, sharedModules, homeImports, wslModules, ... }:
+{ inputs, user, domain, sharedModules, homeImports, wslModules, ... }:
 {
   flake.nixosConfigurations =
     let
@@ -6,7 +6,7 @@
     in
     {
       nixos = nixosSystem {
-        specialArgs = { inherit user; };
+        specialArgs = { inherit user domain; };
         modules = [
           ./nixos
           ../module/lanzaboote.nix
@@ -35,8 +35,8 @@
         modules =
           [
             ./minimal
-            ../modules/impermanence.nix
-            ../modules/systemdboot.nix
+            ../module/impermanence.nix
+            ../module/systemdboot.nix
           ] ++ sharedModules;
       };
 

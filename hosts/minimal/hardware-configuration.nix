@@ -4,35 +4,34 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = # [ (import ../../lib/disko/luks-btrfs-subvol.nix { }) ] ++
+  imports = [ ../../lib/disko/luks-btrfs-subvol.nix ] ++
     [
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/06c208e0-dae1-4597-98b6-d25bdb609e96";
+  # boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/06c208e0-dae1-4597-98b6-d25bdb609e96";
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
 
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = [ "defaults" "size=25%" "mode=755" ];
-  };
-
-  fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/79ff3e82-0cd7-48ca-987e-d3278db25c3a";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
-    };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/12CE-A600";
-    fsType = "vfat";
-  };
+  #   device = "none";
+  #   fsType = "tmpfs";
+  #   options = [ "defaults" "size=25%" "mode=755" ];
+  # };
+  #
+  # fileSystems."/nix" =
+  #   {
+  #     device = "/dev/disk/by-uuid/79ff3e82-0cd7-48ca-987e-d3278db25c3a";
+  #     fsType = "btrfs";
+  #     options = [ "subvol=nix" "compress=zstd" "noatime" ];
+  #   };
+  #
+  # fileSystems."/boot" = {
+  #   device = "/dev/disk/by-uuid/12CE-A600";
+  #   fsType = "vfat";
+  # };
 
 
 

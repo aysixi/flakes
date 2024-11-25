@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, domain, ... }:
 {
   sops.secrets = {
     # "misskey/database" = { mode = "0744"; };
@@ -16,7 +16,8 @@
       ];
     };
     hosts = {
-      "127.0.0.1" = [ "misskey.lan" ];
+      "127.0.0.3" = [ "${domain}" ];
+      "::1" = [ "${domain}" ];
     };
   };
 
@@ -37,7 +38,7 @@
     meilisearch.createLocally = true;
     meilisearch.keyFile = config.sops.secrets."misskey/meilisearch.key".path;
     settings = {
-      url = "http://misskey.lan";
+      url = "http://${domain}";
       # port = 3000;
       redis = {
         port = 6379;
@@ -60,7 +61,7 @@
     };
     reverseProxy = {
       enable = true;
-      host = "misskey.lan"; #  services.misskey.settings.url
+      host = "${domain}"; #  services.misskey.settings.url
       ssl = true;
       webserver.nginx = {
         enableACME = false;
@@ -88,7 +89,7 @@
         ];
         locations = {
           "/" = {
-            proxyPass = "http://localhost:3000";
+            proxyPass = "http://127.0.0.1:3000";
             proxyWebsockets = true;
             recommendedProxySettings = true;
             extraConfig = ''
@@ -123,7 +124,10 @@
           ssl_stapling_verify on;
 
           # penssl dhparam -out /etc/nginx/dhparam.pem 2048
-          ssl_dhparam /etc/nginx/dhparam.pem;   
+          ssl_dhparam /etc/nginx/dhparam.pem;
+          add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+          proxy_headers_hash_max_size 1024;
+          proxy_headers_hash_bucket_size 128;
         '';
       };
     };
@@ -142,7 +146,7 @@
       useTempPath = false;
     };
     virtualHosts."xxx" = {
-      serverName = "misskey.lan"; # bind services.misskey.settings.url
+      serverName = "${domain}"; # bind services.misskey.settings.url
       listen = [
         {
           addr = "0.0.0.0";
