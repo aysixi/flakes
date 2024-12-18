@@ -115,31 +115,31 @@
           filter: subtag(ecy) 
           policy: min_avg10
         }
-        jp {
-          filter: subtag(ecy) && name(keyword: '日本')
-          policy: min_avg10
-
-        }
-        tw {
-          filter: subtag(ecy) && name(keyword: '台湾')
-          policy: min_avg10
-
-        }
-        hk {
-          filter: subtag(ecy) && name(keyword: '香港')
-          policy: min_avg10
-
-        }
-        blockCN {
-            filter: subtag(ecy) && !name(keyword: '香港')
-            policy: min_avg10
-        }
-        r18 {
-          filter: subtag(ecy) && name(keyword: '台湾')
-          filter: subtag(ecy) && name(keyword: '土耳其')
-          policy: min_avg10
-
-        }
+        # jp {
+        #   filter: subtag(ecy) && name(keyword: '日本')
+        #   policy: min_avg10
+        #
+        # }
+        # tw {
+        #   filter: subtag(ecy) && name(keyword: '台湾')
+        #   policy: min_avg10
+        #
+        # }
+        # hk {
+        #   filter: subtag(ecy) && name(keyword: '香港')
+        #   policy: min_avg10
+        #
+        # }
+        # blockCN {
+        #     filter: subtag(ecy) && !name(keyword: '香港')
+        #     policy: min_avg10
+        # }
+        # r18 {
+        #   filter: subtag(ecy) && name(keyword: '台湾')
+        #   filter: subtag(ecy) && name(keyword: '土耳其')
+        #   policy: min_avg10
+        #
+        # }
       }
 
       # See https://github.com/daeuniverse/dae/blob/main/docs/en/configuration/routing.md for full examples.
@@ -168,15 +168,15 @@
       pname(git) -> proxy
       
 
-      domain(geosite:google) -> blockCN
-      domain(geosite:openai) -> blockCN
-      domain(regex:'.openai\.com$') -> blockCN
-      domain(regex:'.chatgpt\.com$') -> blockCN
+      # domain(geosite:google) -> blockCN
+      # domain(geosite:openai) -> blockCN
+      # domain(regex:'.openai\.com$') -> blockCN
+      # domain(regex:'.chatgpt\.com$') -> blockCN
     
 
-      dip(geoip:jp) -> jp
-      dip(geoip:hk) -> hk 
-      dip(geoip:tw) -> tw
+      # dip(geoip:jp) -> jp
+      # dip(geoip:hk) -> hk 
+      # dip(geoip:tw) -> tw
 
 
       # SSH - tcp port 22 is blocked by many proxy servers.
@@ -193,18 +193,19 @@
       domain(suffix: steamserver.net) -> direct
       domain(geosite:steam@cn) -> direct 
       domain(star-engine.com) -> direct
+      domain(konami.net) -> direct
       domain(geosite:steam) -> proxy
       
       #-------# 
       # proxy #
       #-------#
       domain(openwrt.org) -> proxy
-      domain(exhentai.org, e-hentai.org) -> r18
+      # domain(exhentai.org, e-hentai.org) -> r18
       domain(suffix: 'pixiv.net') -> proxy
       domain(suffix: 'nixos.wiki') -> proxy
       domain(suffix: 'nixos-cn.org') -> proxy
       domain(suffix: 'nixos.org') -> proxy
-  	domain(x.com) -> proxy
+  	  domain(x.com) -> proxy
 
       #--------#
       # direct # 

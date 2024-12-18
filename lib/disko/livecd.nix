@@ -33,7 +33,7 @@
                 passwordFile = "/tmp/secret.key";
                 content = {
                   type = "lvm_pv";
-                  vg = "pool";
+                  vg = "poox";
                 };
               };
             }
@@ -52,7 +52,7 @@
       };
     };
     lvm_vg = {
-      pool = {
+      poox = {
         type = "lvm_vg";
         lvs = {
           root = {

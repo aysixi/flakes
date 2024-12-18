@@ -18,6 +18,7 @@
           ../module/steam.nix
           ../module/disk/default.nix
           ../module/misskey/default.nix
+          ../module/sunshine/default.nix #need desktop
 
           {
             home-manager = {

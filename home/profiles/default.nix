@@ -1,7 +1,7 @@
 { inputs, withSystem, module_args, ... }:
 let
   user = "mafuyu";
-  domain = "misskey.lan";
+  domain = "aysixi.moe";
 
   sharedModules = [
     (import ../. { inherit user; })

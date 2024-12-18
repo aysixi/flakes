@@ -49,16 +49,9 @@
     };
     firewall = {
       allowedTCPPorts = [
-        6600
-        # 47984
-        # 47989
-        # 47990
-        # 48010
+        6600 #aria2
       ];
-      allowedUDPPortRanges = [
-        # { from = 47998; to = 48000; }
-        # { from = 8000; to = 8010; }
-      ];
+      allowedUDPPortRanges = [ ];
     };
     hosts = {
       "185.199.109.133" = [ "raw.githubusercontent.com" ];

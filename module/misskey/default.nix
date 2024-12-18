@@ -21,7 +21,7 @@
     };
   };
 
-  services.postgresql.extensions = with pkgs; [
+  services.postgresql.extraPlugins = with pkgs; [
     postgresql15JitPackages.pgroonga
   ];
 

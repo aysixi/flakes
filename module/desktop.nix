@@ -64,12 +64,6 @@
     # displayManager.sddm.enable = true;
     # desktopManager.plasma5.enable = true;
   };
-  services.sunshine = {
-    enable = false;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
   console.useXkbConfig = true;
 
   programs = {

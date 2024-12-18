@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, user, ... }:
 {
   programs.fish = {
     enable = true;
@@ -37,6 +37,6 @@
     ".config/fish/functions/xdg-set.fish".text = import ./functions/xdg-set.nix;
     ".config/fish/functions/owf.fish".text = import ./functions/owf.nix;
     ".config/fish/functions/r.fish".text = import ./functions/r.nix;
-    ".config/fish/functions/kinak.fish".text = import ./functions/kinak.nix;
+    ".config/fish/functions/kinak.fish".text = import ./functions/kinak.nix { inherit user; };
   };
 }
