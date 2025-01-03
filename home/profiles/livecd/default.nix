@@ -1,0 +1,6 @@
+{
+  imports = [
+    ../../shell
+    ../../editors/neovim
+  ];
+}
