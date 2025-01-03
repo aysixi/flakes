@@ -9,6 +9,7 @@
         "/var/lib"
         "/etc/secureboot"
         "/etc/daed"
+        "/etc/dae-wing"
         "/etc/nginx"
       ];
       files = [

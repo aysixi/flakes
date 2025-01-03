@@ -7,7 +7,7 @@
       userName = "aysixi";
       userEmail = "78737594+aysixi@users.noreply.github.com";
       signing = {
-        key = "15B10D98FD00B119";
+        key = "91E0341BB84A94A6";
         signByDefault = true;
       };
       extraConfig = {

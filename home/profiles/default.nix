@@ -8,7 +8,7 @@ let
     module_args
     # inputs.hyprland.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
-    inputs.nur.hmModules.nur
+    inputs.nur.modules.homeManager.default
   ];
 
   homeImports = {

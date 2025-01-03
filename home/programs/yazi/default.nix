@@ -1,49 +1,31 @@
 { pkgs, ... }:
-let
-  # keyjump = {
-  #   yazi = {
-  #     url = "https://raw.githubusercontent.com/redbeardymcgee/yazi-plugins/main/keyjump.yazi/init.lua";
-  #     sha256 = "sha256-IP9GtFHxJWkW889fzqd4LogHjYE2ujk01/1ROP6KGMc=";
-  #   };
-  # };
-  # keyjumpyazi = keyjump.yazi;
-  # keyjump-yazi = pkgs.fetchurl {
-  #   inherit (keyjumpyazi) url sha256;
-  # };
-
-  exifaudio = {
-    yazi = {
-      url = "https://raw.githubusercontent.com/sonico98/exifaudio.yazi/master/init.lua";
-      sha256 = "sha256-Td6Vi1aqWo0CLvDKghFTe/xZr0L8tLGMCv7DYPldD3U=";
-    };
-  };
-  exifaudio-yazi = pkgs.fetchurl {
-    inherit (exifaudio.yazi) url sha256;
-  };
-
-  # mediainfo-yazi = pkgs.fetchurl {
-  #   url = "https://raw.githubusercontent.com/Ape/mediainfo.yazi/master/init.lua";
-  #   sha256 = "sha256-jUKG8MEQCBQ+/NIqNut5dkBxrUpAJ0Vd925XWIuqN/o=";
-  # };
-
-in
 {
   programs.yazi = {
     enable = true;
-    # package = yazi.packages.${pkgs.system}.default;
+    enableFishIntegration = true;
+    # shellWrapperName = "r"; #use functions
+    plugins = {
+      exifaudio = pkgs.fetchFromGitHub {
+        owner = "sonico98";
+        repo = "exifaudio.yazi";
+        rev = "d7946141c87a23dcc6fb3b2730a287faf3154593";
+        sha256 = "sha256-nXBxPG6PVi5vstvVMn8dtnelfCa329CTIOCdXruOxT4=";
+      };
+    };
+    flavors = {
+      kanagawa = pkgs.fetchFromGitHub {
+        owner = "dangooddd";
+        repo = "kanagawa.yazi";
+        rev = "b32f205";
+        sha256 = "sha256-hi3RXCle+KTHlhnQwKDJiHTOro0At9QJMwY2hwWU8Ic=";
+      };
+    };
   };
-  home.packages = with pkgs; [
-    exiftool
-    mediainfo
-  ];
+
   home.file = {
     ".config/yazi/yazi.toml".source = ./yazi.toml;
     ".config/yazi/keymap.toml".source = ./keymap.toml;
     ".config/yazi/theme.toml".source = ./theme.toml;
-    ".config/yazi/init.lua".source = ./init.lua;
-    # ".config/yazi/plugins/keyjump.yazi/init.lua".source = "${keyjump-yazi}";
-    ".config/yazi/plugins/exifaudio.yazi/init.lua".source = "${exifaudio-yazi}";
-    # ".config/yazi/plugins/mediainfo.yazi/init.lua".source = "${mediainfo-yazi}";
   };
 
 }

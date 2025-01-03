@@ -1,7 +1,14 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   # Neovim Module definition
-  myNeovimModule = { config, lib, ... }:
+  myNeovimModule =
+    { config, lib, ... }:
     with lib;
     let
       cfg = config.programs.nvim;
@@ -37,7 +44,10 @@ let
       config = mkIf cfg.enable (mkMerge [
         {
           home.packages = [ cfg.package ];
-          programs.fish.shellAliases = mkIf cfg.enableFishIntegration { vi = "nvim"; vim = "nvim"; };
+          programs.fish.shellAliases = mkIf cfg.enableFishIntegration {
+            vi = "nvim";
+            vim = "nvim";
+          };
         }
 
         (mkIf cfg.defaultEditor {
@@ -45,7 +55,7 @@ let
         })
 
         (mkIf cfg.withNixLSP {
-          home.packages = with pkgs;[
+          home.packages = with pkgs; [
             inputs.nixd.packages.${pkgs.system}.nixd
           ];
         })

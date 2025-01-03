@@ -1,15 +1,27 @@
 { user, ... }:
 ''
-  function kinak_pass
+  function kinak
+    set -lx misskey_path '/home/${user}/rclone/misskey'
+    pg_dump -U misskey -h localhost -p 5432 -d misskey -F c -f ~/rclone/misskey/misskey.dump
+    sudo cp -r /var/lib/redis-misskey/dump.rdb $misskey_path/dump.rdb
+    sudo chown ${user} $misskey_path/dump.rdb
+    sudo cp -r /var/lib/private/misskey/ $misskey_path/ #storage
+    sudo chown -R ${user} $misskey_path/misskey         #storage
+    tar -czvf ~/misskey_all.tar.gz $misskey_path
+    age -p -o ~/misskey_all.tar.gz.age ~/misskey_all.tar.gz
+    rm -r ~/rclone/misskey/*
+    cp ~/misskey_all.tar.gz.age $misskey_path
+  end
+
+  function kinak_menu
+
       read -s -P "Enter rclone password: " RCLONE_CONFIG_PASS
       echo
       read -s -P "Enter restic password: " RESTIC_PASSWORD
       echo
       set -lx RCLONE_CONFIG_PASS $RCLONE_CONFIG_PASS
       set -lx RESTIC_PASSWORD $RESTIC_PASSWORD
-  end
 
-  function kinak_menu
       while true
           echo -e "1 to backup"
           echo -e "2 to gc"
@@ -51,9 +63,15 @@
 
                   tar -czvf ~/password-store.tar.gz ~/.local/share/password-store/ #password-store 
                   age -p -o ~/password-store.tar.gz.age ~/password-store.tar.gz 
+                  echo -e "test unlock🔓"
+                  age -d ~/password-store.tar.gz.age > /dev/null
+                  if test $status -eq 0
                   rclone copy ~/password-store.tar.gz.age google:/rclone/ -P
-
                   echo -e "all in🌟\n"
+                  else
+                    echo "error"
+                  end
+
               case "4"
                   echo -e "Print snapshots"
                   restic -r rclone:restic-local: snapshots
@@ -82,19 +100,4 @@
       end
   end
 
-  function kinak
-      kinak_pass
-      kinak_menu
-  end
-
-  function misskey_back
-    set -lx misskey_path '/home/${user}/rclone/misskey'
-    pg_dump -U misskey -h localhost -p 5432 -d misskey -F c -f ~/rclone/misskey/misskey.dump
-    sudo cp -r /var/lib/redis-misskey/dump.rdb $misskey_path/dump.rdb
-    sudo chown ${user} $misskey_path/dump.rdb
-    sudo cp -r /var/lib/private/misskey/ $misskey_path/ #storage
-    sudo chown -R ${user} $misskey_path/misskey         #storage
-    tar -czvf ~/misskey_all.tar.gz $misskey_path
-    age -p -o ~/misskey_all.tar.gz.age ~/misskey_all.tar.gz
-  end
 ''

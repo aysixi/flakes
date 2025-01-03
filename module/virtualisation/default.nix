@@ -1,7 +1,7 @@
 {
   imports = [
     # ./docker.nix
-    ./qemu.nix
+    # ./qemu.nix
     # ./waydroid.nix
     # ./lxd.nix
     # ./bottles.nix

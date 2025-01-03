@@ -1,4 +1,4 @@
-{ pkgs, config, domain, ... }:
+{ config, domain, pkgs, user, ... }:
 {
   sops.secrets = {
     # "misskey/database" = { mode = "0744"; };
@@ -21,12 +21,28 @@
     };
   };
 
-  services.postgresql.extraPlugins = with pkgs; [
-    postgresql15JitPackages.pgroonga
-  ];
+  services.postgresql = {
+    identMap = ''
+      # ArbitraryMapName systemUser DBUser
+       superuser_map      root      postgres
+       superuser_map      postgres  postgres
+       # Let other names login as themselves
+       superuser_map      /^(.*)$   \1
+       superuser_map      ${user}      misskey
+    '';
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method optional_ident_map
+      local    all    postgres    peer
+      local    all    misskey     peer    map=superuser_map
+    '';
+    extensions = with pkgs; [
+      postgresql15JitPackages.pgroonga
+    ];
+  };
 
   services.redis.servers.misskey.requirePassFile = config.sops.secrets."misskey/redis".path;
   services.meilisearch.masterKeyEnvironmentFile = config.sops.secrets."misskey/meilisearch".path;
+  # services.meilisearch.package = pkgs.aysixi.meilisearch;
 
   services.misskey = {
     enable = true;

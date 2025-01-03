@@ -45,7 +45,7 @@
         treefmt.config = {
           inherit (config.flake-root) projectRootFile;
           package = pkgs.treefmt;
-          programs.nixpkgs-fmt.enable = true;
+          programs.nixfmt-rfc-style.enable = true;
           programs.prettier.enable = true;
           programs.taplo.enable = true;
           programs.shfmt.enable = true;
@@ -55,7 +55,7 @@
           # run by `nix devlop` or `nix-shell`(legacy)
           # Temporarily enable experimental features, run by`nix develop --extra-experimental-features nix-command --extra-experimental-features flakes`
           default = pkgs.mkShell {
-            nativeBuildInputs = with pkgs; [ git neovim sbctl just ];
+            nativeBuildInputs = with pkgs; [ git inputs.nvim-flake.packages.${pkgs.system}.lazynvim sbctl just ];
             inputsFrom = [
               config.flake-root.devShell
             ];
@@ -74,7 +74,7 @@
           # ```
           secret = pkgs.mkShell {
             name = "secret";
-            nativeBuildInputs = with pkgs; [ sops age neovim ssh-to-age ];
+            nativeBuildInputs = with pkgs; [ sops age inputs.nvim-flake.packages.${pkgs.system}.lazynvim ssh-to-age ];
             shellHook = ''
               export $EDITOR=nvim
               export PS1="\[\e[0;31m\](Secret)\$ \[\e[m\]"
@@ -100,6 +100,7 @@
     flake-root.url = "github:srid/flake-root";
     disko.url = "github:nix-community/disko";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs-misskey.url = "github:NixOS/nixpkgs?rev=25607567b9bb5c02b2ab9ae79bf7cfb6d07e9a78";
     flake-registry = {
       url = "github:NixOS/flake-registry";
       flake = false;
@@ -154,7 +155,6 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
   };
   nixConfig = {
     extra-substituters = [
