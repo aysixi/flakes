@@ -1,8 +1,9 @@
-{ pkgs
-, config
-, lib
-, mi
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  mi,
+  ...
 }:
 {
   users.mutableUsers = false;
@@ -19,6 +20,11 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2DjjT8x2m75bd2M4ML8Uy7XXxaj5AzFvZKAqXWQTWZ nixos"
     ];
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "audio"
+    ];
   };
 }

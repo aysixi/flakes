@@ -1,4 +1,9 @@
-{ lib, pkgs, user, ... }:
+{
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 {
   networking.hostName = "wsl";
 

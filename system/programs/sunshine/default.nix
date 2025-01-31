@@ -8,8 +8,14 @@
         48010
       ];
       allowedUDPPortRanges = [
-        { from = 47998; to = 48000; }
-        { from = 8000; to = 8010; }
+        {
+          from = 47998;
+          to = 48000;
+        }
+        {
+          from = 8000;
+          to = 8010;
+        }
       ];
     };
   };

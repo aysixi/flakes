@@ -1,17 +1,25 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   boot = {
-    supportedFilesystems = [ "ntfs" ]; #ntfs support
+    supportedFilesystems = [ "ntfs" ]; # ntfs support
     bootspec.enable = true;
     loader = {
       systemd-boot =
-        if !config.boot.lanzaboote.enable then {
-          enable = true;
-          consoleMode = "auto";
-          # configurationLimit = 5;
-        } else {
-          enable = lib.mkForce false;
-        };
+        if !config.boot.lanzaboote.enable then
+          {
+            enable = true;
+            consoleMode = "auto";
+            # configurationLimit = 5;
+          }
+        else
+          {
+            enable = lib.mkForce false;
+          };
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";

@@ -32,34 +32,34 @@
     "dae/group" = { };
     "dae/routing" = { };
   };
-  sops.templates."config.dae".content = '' 
-  global {
-    log_level: info
+  sops.templates."config.dae".content = ''
+    global {
+      log_level: info
 
-    lan_interface: enp7s0
-    wan_interface: auto
+      lan_interface: enp7s0
+      wan_interface: auto
 
-    allow_insecure: false
-    auto_config_kernel_parameter: true
-    check_interval: 300s
-    dial_mode: domain++
+      allow_insecure: false
+      auto_config_kernel_parameter: true
+      check_interval: 300s
+      dial_mode: domain++
 
-    tls_implementation: utls
-    utls_imitate: chrome_auto
-  }
+      tls_implementation: utls
+      utls_imitate: chrome_auto
+    }
 
-  subscription {
-    dau: '${config.sops.placeholder."dae/dau"}'
-    ecy: '${config.sops.placeholder."dae/ecy"}'
-    new: '${config.sops.placeholder."dae/new"}'
-  }
+    subscription {
+      dau: '${config.sops.placeholder."dae/dau"}'
+      ecy: '${config.sops.placeholder."dae/ecy"}'
+      new: '${config.sops.placeholder."dae/new"}'
+    }
 
-  node { }
+    node { }
 
-  ${config.sops.placeholder."dae/dns"}
+    ${config.sops.placeholder."dae/dns"}
 
-  ${config.sops.placeholder."dae/group"}
+    ${config.sops.placeholder."dae/group"}
 
-  ${config.sops.placeholder."dae/routing"}
+    ${config.sops.placeholder."dae/routing"}
   '';
 }

@@ -1,4 +1,9 @@
-{ pkgs, user, lib, ... }:
+{
+  pkgs,
+  user,
+  lib,
+  ...
+}:
 {
 
   imports = [
@@ -46,7 +51,9 @@
       intel-media-sdk
     ];
   };
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;

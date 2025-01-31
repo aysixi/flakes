@@ -6,7 +6,7 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     sway-contrib.grimshot
     swaylock-effects
     pamixer

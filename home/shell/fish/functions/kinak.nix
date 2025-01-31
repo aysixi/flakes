@@ -39,7 +39,7 @@
       echo -e "8 to pull remote"
       echo -e "9 to custom command"
       echo -e "0 to exit"
-  
+
       read -P "ready?: " answer
       switch $answer
       case "1"

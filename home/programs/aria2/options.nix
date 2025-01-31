@@ -1,5 +1,11 @@
 # ./foo.nix
-{ config, lib, pkgs, mi, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  mi,
+  ...
+}:
 
 with lib;
 

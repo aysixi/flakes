@@ -8,20 +8,20 @@
 
 ## 功能特性
 
-* BT 下载率高、速度快
-* 重启后不丢失任务进度、不重复下载
-* 删除正在下载的任务自动删除未完成的文件
-* 下载错误自动删除未完成的文件
-* 下载完成自动删除控制文件(`.aria2`后缀名文件)
-* 下载完成自动删除种子文件(`.torrent`后缀名文件)
-* 下载完成自动删除空目录
-* 下载完成自动移动文件到指定目录
-* 下载完成自动上传到 Google Drive 和 OneDrive 等网盘(RCLONE 联动功能)
-* BT 下载完成自动清除垃圾文件(文件类型过滤功能)
-* BT 下载完成自动清除小文件(文件大小过滤功能)
-* 一键自动更新 BT tracker，进一步加速 BT 下载
-* 有一定的防版权投诉、防迅雷吸血效果
-* 更好的 PT 下载支持
+- BT 下载率高、速度快
+- 重启后不丢失任务进度、不重复下载
+- 删除正在下载的任务自动删除未完成的文件
+- 下载错误自动删除未完成的文件
+- 下载完成自动删除控制文件(`.aria2`后缀名文件)
+- 下载完成自动删除种子文件(`.torrent`后缀名文件)
+- 下载完成自动删除空目录
+- 下载完成自动移动文件到指定目录
+- 下载完成自动上传到 Google Drive 和 OneDrive 等网盘(RCLONE 联动功能)
+- BT 下载完成自动清除垃圾文件(文件类型过滤功能)
+- BT 下载完成自动清除小文件(文件大小过滤功能)
+- 一键自动更新 BT tracker，进一步加速 BT 下载
+- 有一定的防版权投诉、防迅雷吸血效果
+- 更好的 PT 下载支持
 
 ## 部署方法
 
@@ -32,8 +32,8 @@
 
 ## 进阶玩法
 
-* [OneDrive、Google Drive 等网盘离线下载](https://p3terx.com/archives/offline-download-of-onedrive-gdrive.html)
-* [百度网盘转存到 OneDrive 、Google Drive 等其他网盘](https://p3terx.com/archives/baidunetdisk-transfer-to-onedrive-and-google-drive.html)
+- [OneDrive、Google Drive 等网盘离线下载](https://p3terx.com/archives/offline-download-of-onedrive-gdrive.html)
+- [百度网盘转存到 OneDrive 、Google Drive 等其他网盘](https://p3terx.com/archives/baidunetdisk-transfer-to-onedrive-and-google-drive.html)
 
 ## 文件说明
 

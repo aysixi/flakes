@@ -41,7 +41,10 @@
                 format = "vfat";
                 # 用作 Boot 分区，Disko 生成磁盘镜像时根据此处配置挂载分区，需要和 fileSystems.* 一致
                 mountpoint = "/boot";
-                mountOptions = [ "fmask=0077" "dmask=0077" ];
+                mountOptions = [
+                  "fmask=0077"
+                  "dmask=0077"
+                ];
               };
             };
 
@@ -86,7 +89,10 @@
                 subvolumes = {
                   "/nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                 };
               };

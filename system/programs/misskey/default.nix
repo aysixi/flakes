@@ -1,10 +1,21 @@
-{ config, pkgs, mi, ... }:
+{
+  config,
+  pkgs,
+  mi,
+  ...
+}:
 {
   sops.secrets = {
     # "misskey/database" = { mode = "0744"; };
-    "misskey/redis" = { mode = "0744"; };
-    "misskey/meilisearch" = { mode = "0744"; };
-    "misskey/meilisearch.key" = { mode = "0744"; };
+    "misskey/redis" = {
+      mode = "0744";
+    };
+    "misskey/meilisearch" = {
+      mode = "0744";
+    };
+    "misskey/meilisearch.key" = {
+      mode = "0744";
+    };
   };
 
   networking = {
@@ -77,7 +88,7 @@
     };
     reverseProxy = {
       enable = true;
-      host = "${mi.domain}"; #  services.misskey.settings.url
+      host = "${mi.domain}"; # services.misskey.settings.url
       ssl = true;
       webserver.nginx = {
         enableACME = false;
@@ -117,7 +128,7 @@
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Proto https;
 
-            
+
               # Cache settings
               proxy_cache cache1;
               proxy_cache_lock on;

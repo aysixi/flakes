@@ -57,75 +57,72 @@
         specialArgs = specialArgs // {
           enableLanzaboote = false;
         };
-        modules =
-          [
-            ./minimal
-            "${mod}/nix"
-            # "${mod}/core/lanzaboote.nix"
-            "${mod}/core/systemdboot.nix"
-            "${mod}/core/impermanence.nix"
-            "${mod}/core"
-            "${mod}/core/network.nix"
-            "${mod}/network/daed"
-            inputs.impermanence.nixosModules.impermanence
-            inputs.disko.nixosModules.disko
+        modules = [
+          ./minimal
+          "${mod}/nix"
+          # "${mod}/core/lanzaboote.nix"
+          "${mod}/core/systemdboot.nix"
+          "${mod}/core/impermanence.nix"
+          "${mod}/core"
+          "${mod}/core/network.nix"
+          "${mod}/network/daed"
+          inputs.impermanence.nixosModules.impermanence
+          inputs.disko.nixosModules.disko
 
-            inputs.daeuniverse.nixosModules.dae
-            inputs.daeuniverse.nixosModules.daed
-          ];
+          inputs.daeuniverse.nixosModules.dae
+          inputs.daeuniverse.nixosModules.daed
+        ];
       };
 
       wsl = nixosSystem {
         specialArgs = specialArgs // {
           enableLanzaboote = false;
         };
-        modules =
-          [
-            ./wsl
-            "${mod}/nix"
-            "${mod}/core"
-            "${mod}/core/sops.nix"
-            "${mod}/core/network.nix"
-            inputs.home-manager.nixosModule
-            inputs.nixos-wsl.nixosModules.wsl
-            inputs.sops-nix.nixosModules.sops
-            inputs.disko.nixosModules.disko
+        modules = [
+          ./wsl
+          "${mod}/nix"
+          "${mod}/core"
+          "${mod}/core/sops.nix"
+          "${mod}/core/network.nix"
+          inputs.home-manager.nixosModule
+          inputs.nixos-wsl.nixosModules.wsl
+          inputs.sops-nix.nixosModules.sops
+          inputs.disko.nixosModules.disko
 
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = specialArgs;
-                users.${mi.userName}.imports = homeImports."${mi.userName}@wsl" or [ ];
-              };
-            }
-          ];
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = specialArgs;
+              users.${mi.userName}.imports = homeImports."${mi.userName}@wsl" or [ ];
+            };
+          }
+        ];
       };
 
       livecd = nixosSystem {
         specialArgs = specialArgs // {
           enableLanzaboote = false;
         };
-        modules =
-          [
-            ./livecd
-            "${mod}/nix"
-            # "${mod}/core/lanzaboote.nix"
-            "${mod}/core/systemdboot.nix"
-            "${mod}/core/impermanence.nix"
-            "${mod}/core"
-            "${mod}/core/sops.nix"
-            "${mod}/core/network.nix"
-            "${mod}/network/daed"
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = specialArgs;
-                users.${mi.userName}.imports = homeImports."${mi.userName}@livecd" or [ ];
-              };
-            }
-          ];
+        modules = [
+          ./livecd
+          "${mod}/nix"
+          # "${mod}/core/lanzaboote.nix"
+          "${mod}/core/systemdboot.nix"
+          "${mod}/core/impermanence.nix"
+          "${mod}/core"
+          "${mod}/core/sops.nix"
+          "${mod}/core/network.nix"
+          "${mod}/network/daed"
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = specialArgs;
+              users.${mi.userName}.imports = homeImports."${mi.userName}@livecd" or [ ];
+            };
+          }
+        ];
       };
     };
 }

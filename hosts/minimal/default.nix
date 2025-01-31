@@ -1,4 +1,12 @@
-{ config, daeuniverse, lib, pkgs, inputs, user, ... }:
+{
+  config,
+  daeuniverse,
+  lib,
+  pkgs,
+  inputs,
+  user,
+  ...
+}:
 {
 
   imports = [

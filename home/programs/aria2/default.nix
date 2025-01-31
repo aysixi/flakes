@@ -1,5 +1,10 @@
 # ./bar.nix
-{ mi, lib, config, ... }:
+{
+  mi,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     ./options.nix

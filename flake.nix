@@ -1,35 +1,38 @@
 {
   description = "Description for the project";
 
-
-  outputs = inputs@{ self, ... }:
+  outputs =
+    inputs@{ self, ... }:
     let
       selfPkgs = import ./pkgs;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = [ "x86_64-linux" ];
-      imports = [
-        ./hosts
-        ./home/profiles/home-manager.nix
-        # To import a flake module
-        # 1. Add foo to inputs
-        # 2. Add foo as a parameter to the outputs function
-        # 3. Add here: foo.flakeModule
+      imports =
+        [
+          ./hosts
+          ./home/profiles/home-manager.nix
+          # To import a flake module
+          # 1. Add foo to inputs
+          # 2. Add foo as a parameter to the outputs function
+          # 3. Add here: foo.flakeModule
 
-      ] ++ [
-        inputs.flake-root.flakeModule
-        inputs.treefmt-nix.flakeModule
-      ];
+        ]
+        ++ [
+          inputs.flake-root.flakeModule
+          inputs.treefmt-nix.flakeModule
+        ];
       flake = {
         overlays.default = selfPkgs.overlay;
       };
       # systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
       perSystem =
-        { config
-        , pkgs
-        , system
-        , ...
+        {
+          config,
+          pkgs,
+          system,
+          ...
         }:
         {
           # NOTE: These overlays apply to the Nix shell only. See `modules/nix.nix` for system overlays.
@@ -115,7 +118,6 @@
         };
     };
 
-
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-root.url = "github:srid/flake-root";
@@ -198,6 +200,9 @@
       "gomibox.cachix.org-1:M3V3Xzc+tMCxAMf4GzGkhGebm00Lk3vLEgU7f97JL/8="
       "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
     ];
-    trusted-users = [ "root" "@wheel" ];
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
   };
 }

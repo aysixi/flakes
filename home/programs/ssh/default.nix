@@ -1,6 +1,8 @@
-{ mi
-, ...
-}: {
+{
+  mi,
+  ...
+}:
+{
   programs.ssh = {
     enable = true;
     extraConfig = ''

@@ -1,7 +1,8 @@
-{ self
-, pkgs
-, inputs
-, ...
+{
+  self,
+  pkgs,
+  inputs,
+  ...
 }:
 {
   nixpkgs = {
@@ -34,10 +35,9 @@
 
       (final: prev: {
         fcitx5-rime = prev.fcitx5-rime.override {
-          rimeDataPkgs = with pkgs.aysixi;
-            [
-              rime-icea
-            ];
+          rimeDataPkgs = with pkgs.aysixi; [
+            rime-icea
+          ];
         };
       })
     ];

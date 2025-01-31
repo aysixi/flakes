@@ -14,12 +14,15 @@ in
     twemoji-color-font
   ];
   fonts = {
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      twemoji-color-font
-    ] ++ nerdFonts;
+    packages =
+      with pkgs;
+      [
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-emoji
+        twemoji-color-font
+      ]
+      ++ nerdFonts;
     fontconfig = {
       localConf = ''
         <?xml version="1.0"?>

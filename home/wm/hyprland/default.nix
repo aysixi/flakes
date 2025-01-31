@@ -11,20 +11,22 @@
   };
 
   home = {
-    packages = [
-      # inputs.hyprland-contrib.packages."${pkgs.system}".grimblast
-      # inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
-      # config.nur.repos.aleksana.yofi
-    ] ++ (with pkgs; [
-      grimblast
-      hyprpicker
-      # hyprlock
-      # hypridle
-      # swaylock-effects
-      # swayidle
-      pamixer
-      # aegisub
-    ]);
+    packages =
+      [
+        # inputs.hyprland-contrib.packages."${pkgs.system}".grimblast
+        # inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
+        # config.nur.repos.aleksana.yofi
+      ]
+      ++ (with pkgs; [
+        grimblast
+        hyprpicker
+        # hyprlock
+        # hypridle
+        # swaylock-effects
+        # swayidle
+        pamixer
+        # aegisub
+      ]);
   };
 
   systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];

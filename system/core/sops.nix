@@ -1,8 +1,9 @@
-{ config
-, inputs
-, lib
-, mi
-, ...
+{
+  config,
+  inputs,
+  lib,
+  mi,
+  ...
 }:
 {
   #NOTE: https://github.com/Mic92/sops-nix#initrd-secrets

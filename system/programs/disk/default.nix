@@ -1,4 +1,10 @@
-{ config, pkgs, lib, mi, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  mi,
+  ...
+}:
 let
   winmo = pkgs.writeShellScriptBin "winmo" ''
       if ! [ -f "/home/${mi.userName}/win/e" ]; then
@@ -22,7 +28,6 @@ in
 
     wantedBy = [ "network.target" ];
   };
-
 
   systemd.services."ummm" = {
     description = "Mount /dev/sdb1 partition";

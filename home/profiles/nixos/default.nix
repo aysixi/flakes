@@ -1,15 +1,20 @@
-{ lib, config, self, inputs, ... }:
 {
-  imports =
-    [
-      ../../wm/hyprland
-      # ./wm/sway
-      ../../wall
-      ../../terminals
-      ../../editors
-      ../../shell
-      ../../programs
-    ];
+  lib,
+  config,
+  self,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ../../wm/hyprland
+    # ./wm/sway
+    ../../wall
+    ../../terminals
+    ../../editors
+    ../../shell
+    ../../programs
+  ];
 
   wayland.windowManager.hyprland = lib.mkIf config.wayland.windowManager.hyprland.enable { };
   nixpkgs = {

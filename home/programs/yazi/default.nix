@@ -7,7 +7,7 @@ in
 {
   programs.yazi = {
     enable = true;
-    initLua = ./init.lua; #This plugin provides cross-instance yank ability
+    initLua = ./init.lua; # This plugin provides cross-instance yank ability
     enableFishIntegration = true;
     # shellWrapperName = "r"; #use functions
     flavors = { };

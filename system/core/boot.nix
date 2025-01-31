@@ -1,10 +1,11 @@
-{ lib
-, enableLanzaboote ? false
-, ...
+{
+  lib,
+  enableLanzaboote ? false,
+  ...
 }:
 {
   boot = {
-    supportedFilesystems = [ "ntfs" ]; #ntfs support
+    supportedFilesystems = [ "ntfs" ]; # ntfs support
     bootspec.enable = true;
     loader = {
       systemd-boot =

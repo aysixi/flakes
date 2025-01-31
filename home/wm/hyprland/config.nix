@@ -47,16 +47,16 @@ let
     killall .waybar-wrapped
     ${pkgs.waybar}/bin/waybar > /dev/null 2>&1 &
   '';
-  # suspendScript = pkgs.writeShellScript "suspend-script" ''
-  #   RUNNING_COUNT=$(${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg "state: \"running\"" -c || true)
-  #   if [ -z "$RUNNING_COUNT" ]; then
-  #   RUNNING_COUNT=0
-  #   fi
-  #   if [ $RUNNING_COUNT -le 2 ]; then
-  #   ${pkgs.systemd}/bin/systemctl suspend
-  #   fi
-  # '';
 in
+# suspendScript = pkgs.writeShellScript "suspend-script" ''
+#   RUNNING_COUNT=$(${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg "state: \"running\"" -c || true)
+#   if [ -z "$RUNNING_COUNT" ]; then
+#   RUNNING_COUNT=0
+#   fi
+#   if [ $RUNNING_COUNT -le 2 ]; then
+#   ${pkgs.systemd}/bin/systemctl suspend
+#   fi
+# '';
 {
   imports = [ ../../programs/waybar/hyprland_waybar.nix ];
   # services.swayidle = {

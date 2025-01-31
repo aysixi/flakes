@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   passwordStoreDir = "${config.xdg.dataHome}/password-store";
 in
@@ -37,7 +42,7 @@ in
 
   # password-store extensions for browsers
   # you need to install the browser extension for this to work
-  # https://github.com/browserpass/browserpass-extension  
+  # https://github.com/browserpass/browserpass-extension
   programs.browserpass = {
     enable = true;
     browsers = [

@@ -1,4 +1,10 @@
-{ pkgs, config, mi, inputs, ... }:
+{
+  pkgs,
+  config,
+  mi,
+  inputs,
+  ...
+}:
 {
   programs = {
     dconf.enable = true;
@@ -17,44 +23,53 @@
     enable = true;
     wlr.enable = true;
     configPackages = [ pkgs.gnome-session ];
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
   };
 
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
     fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-chinese-addons
-      fcitx5-anthy
-      fcitx5-table-extra
-      fcitx5-rime
-    ] ++ (with pkgs.aysixi; [
-      fcitx5-pinyin-moegirl
-      fcitx5-pinyin-zhwiki
-    ]);
+    fcitx5.addons =
+      with pkgs;
+      [
+        fcitx5-chinese-addons
+        fcitx5-anthy
+        fcitx5-table-extra
+        fcitx5-rime
+      ]
+      ++ (with pkgs.aysixi; [
+        fcitx5-pinyin-moegirl
+        fcitx5-pinyin-zhwiki
+      ]);
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      libnotify
-      wl-clipboard
-      wlr-randr
-      xorg.xeyes
-      nemo
-      wev
-      wf-recorder
-      pulsemixer
-      sshpass
-      imagemagick
-      grim
-      slurp
-      linux-wifi-hotspot
-      scrcpy
-      qbittorrent-enhanced
-    ] ++ [
-      inputs.tlock.packages.${system}.default
-    ];
+    systemPackages =
+      with pkgs;
+      [
+        libnotify
+        wl-clipboard
+        wlr-randr
+        xorg.xeyes
+        nemo
+        wev
+        wf-recorder
+        pulsemixer
+        sshpass
+        imagemagick
+        grim
+        slurp
+        linux-wifi-hotspot
+        scrcpy
+        qbittorrent-enhanced
+      ]
+      ++ [
+        inputs.tlock.packages.${system}.default
+      ];
     variables.NIXOS_OZONE_WL = "1";
   };
 
@@ -84,11 +99,17 @@
 
   systemd.services."getty@tty1" = {
     overrideStrategy = "asDropin";
-    serviceConfig.ExecStart = [ "" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${config.services.getty.loginProgram} --autologin ${mi.userName} --noclear --keep-baud %I 115200,38400,9600 $TERM" ];
+    serviceConfig.ExecStart = [
+      ""
+      "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${config.services.getty.loginProgram} --autologin ${mi.userName} --noclear --keep-baud %I 115200,38400,9600 $TERM"
+    ];
   };
 
   programs.adb.enable = true;
-  users.users.${mi.userName}.extraGroups = [ "adbuser" "bluetooth" ];
+  users.users.${mi.userName}.extraGroups = [
+    "adbuser"
+    "bluetooth"
+  ];
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

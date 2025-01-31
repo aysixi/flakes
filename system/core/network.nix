@@ -7,7 +7,7 @@
     };
     firewall = {
       allowedTCPPorts = [
-        6600 #aria2
+        6600 # aria2
       ];
       allowedUDPPortRanges = [ ];
     };
