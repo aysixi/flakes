@@ -1,13 +1,13 @@
-{ inputs
-, self
-, config
-, mi
-, ...
+{
+  inputs,
+  self,
+  config,
+  mi,
+  ...
 }:
 {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
-    inputs.nur.modules.homeManager.default
   ];
 
   home = {
