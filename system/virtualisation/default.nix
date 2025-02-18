@@ -4,7 +4,7 @@
     # ./qemu.nix
     # ./waydroid.nix
     # ./lxd.nix
-    # ./bottles.nix
-    ./nix-on-droid.nix
+    ./bottles.nix
+    # ./nix-on-droid.nix
   ];
 }

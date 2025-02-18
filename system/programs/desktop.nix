@@ -108,7 +108,6 @@
   programs.adb.enable = true;
   users.users.${mi.userName}.extraGroups = [
     "adbuser"
-    "bluetooth"
   ];
 
   systemd = {

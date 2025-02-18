@@ -8,6 +8,7 @@ let
   passwordStoreDir = "${config.xdg.dataHome}/password-store";
 in
 {
+
   programs.password-store = {
     enable = true;
     package = pkgs.pass.withExtensions (exts: [
@@ -48,5 +49,9 @@ in
     browsers = [
       "firefox"
     ];
+  };
+
+  xdg.configFile."fish/completions/pass.fish" = lib.mkIf config.programs.password-store.enable {
+    text = import ./pass-otp.nix { inherit pkgs; };
   };
 }

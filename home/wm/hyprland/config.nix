@@ -20,68 +20,25 @@ let
     convert $HOME/Pictures/output.png -bordercolor none -border 20 \( +clone -background black -shadow 80x8+15+15 \) \
     +swap -background transparent -layers merge +repage $HOME/Pictures/$FILE
     #
-    composite -gravity Southeast "${watermark}" $HOME/Pictures/$FILE $HOME/Pictures/$FILE 
+    composite -gravity Southeast "${watermark}" $HOME/Pictures/$FILE $HOME/Pictures/$FILE
     #
     wl-copy < $HOME/Pictures/$FILE
     #   remove the other pictures
     rm $HOME/Pictures/src.png $HOME/Pictures/output.png
   '';
-  # myswaylock = pkgs.writeShellScriptBin "myswaylock" ''
-  #   ${pkgs.swaylock-effects}/bin/swaylock  \
-  #   --screenshots \
-  #   --clock \
-  #   --indicator \
-  #   --indicator-radius 100 \
-  #   --indicator-thickness 7 \
-  #   --effect-blur 7x5 \
-  #   --effect-vignette 0.5:0.5 \
-  #   --ring-color 3b4252 \
-  #   --key-hl-color 880033 \
-  #   --line-color 00000000 \
-  #   --inside-color 00000088 \
-  #   --separator-color 00000000 \
-  #   --grace 2 \
-  #   --fade-in 0.3
-  # '';
   launch_waybar = pkgs.writeShellScriptBin "launch_waybar" ''
     killall .waybar-wrapped
     ${pkgs.waybar}/bin/waybar > /dev/null 2>&1 &
   '';
 in
-# suspendScript = pkgs.writeShellScript "suspend-script" ''
-#   RUNNING_COUNT=$(${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg "state: \"running\"" -c || true)
-#   if [ -z "$RUNNING_COUNT" ]; then
-#   RUNNING_COUNT=0
-#   fi
-#   if [ $RUNNING_COUNT -le 2 ]; then
-#   ${pkgs.systemd}/bin/systemctl suspend
-#   fi
-# '';
 {
   imports = [ ../../programs/waybar/hyprland_waybar.nix ];
-  # services.swayidle = {
-  #   enable = true;
-  #   events = [
-  #     {
-  #       event = "before-sleep";
-  #       # command = "${myswaylock}/bin/myswaylock";
-  #       command = "hyprlock";
-  #     }
-  #   ];
-  #   timeouts = [
-  #     {
-  #       timeout = 900;
-  #       command = suspendScript.outPath;
-  #     }
-  #   ];
-  # };
-
   wayland.windowManager.hyprland = {
     extraConfig = ''
       $mainMod = ALT
           # $scripts=$HOME/.config/hypr/scripts
 
-          monitor=,preferred,auto,1 
+          monitor=,preferred,auto,1
           # monitor=HDMI-A-1, 1920x1080, 0x0, 1
           # monitor=eDP-1, 1920x1080, 1920x0, 1
 
@@ -114,16 +71,16 @@ in
                   col.active_border = rgb(81a1c1)
                   col.inactive_border = rgba(595959aa)
 
-                  layout = dwindle # master|dwindle 
+                  layout = dwindle # master|dwindle
                 }
 
                 dwindle {
-                  force_split = 0 
+                  force_split = 0
                   special_scale_factor = 0.8
-                  split_width_multiplier = 1.0 
+                  split_width_multiplier = 1.0
                   use_active_for_splits = true
-                  pseudotile = yes 
-                  preserve_split = yes 
+                  pseudotile = yes
+                  preserve_split = yes
                 }
 
                 master {
@@ -145,7 +102,7 @@ in
               ignore_window = true
               color = 0x1a1a1aee
             }
-              # col.shadow = 
+              # col.shadow =
               # col.shadow_inactive
               # shadow_offset
               dim_inactive = false
@@ -205,7 +162,7 @@ in
             }
 
             device {
-              name = epic mouse V1 
+              name = epic mouse V1
               sensitivity = -0.5
             }
         #---------#
@@ -279,7 +236,7 @@ in
 
          #-------------------------------#
          # special workspace(scratchpad) #
-         #-------------------------------# 
+         #-------------------------------#
          bind = $mainMod, minus, movetoworkspace,special
          bind = $mainMod, equal, togglespecialworkspace
 
@@ -325,17 +282,17 @@ in
          # switch between current and last workspace #
          #-------------------------------------------#
          binds {
-           workspace_back_and_forth = 1 
+           workspace_back_and_forth = 1
            allow_workspace_cycles = 1
          }
          bind=$mainMod,slash,workspace,previous
 
          #------------------------#
          # quickly launch program #
-         #------------------------# 
+         #------------------------#
          bind=$mainMod,B,exec,nvidia-offload firefox
          bind=$mainMod SHIFT,R,exec,hyprctl reload
-         bind=$mainMod SHIFT,M,exec,kitty --class="musicfox" --hold sh -c "musicfox" 
+         bind=$mainMod SHIFT,M,exec,kitty --class="musicfox" --hold sh -c "musicfox"
          bind=$mainMod SHIFT,D,exec,kitty  --class="danmufloat" --hold sh -c "export TERM=xterm-256color && bili"
          bind=$mainMod SHIFT,X,exec,hyprlock
          bind=$mainMod,T,exec,telegram-desktop
@@ -354,8 +311,8 @@ in
            bind=,XF86AudioMicMute,exec, pamixer --default-source -t
            bind=,XF86MonBrightnessUp,exec, light -A 5
            bind=,XF86MonBrightnessDown, exec, light -U 5
-           bind=,XF86AudioPlay,exec, mpc -q toggle 
-           bind=,XF86AudioNext,exec, mpc -q next 
+           bind=,XF86AudioPlay,exec, mpc -q toggle
+           bind=,XF86AudioNext,exec, mpc -q next
            bind=,XF86AudioPrev,exec, mpc -q prev
 
            #---------------#
@@ -376,11 +333,11 @@ in
            binde=,h,resizeactive,-15 0
            binde=,k,resizeactive,0 -15
            binde=,j,resizeactive,0 15
-           bind=,escape,submap,reset 
+           bind=,escape,submap,reset
            submap=reset
 
            #-----------#
-           # minecraft # 
+           # minecraft #
            #-----------#
            binde=ALT,F12,submap,mine
            submap=mine
@@ -403,7 +360,7 @@ in
            #-----------------------#
            # wall(by swww service) #
            #-----------------------#
-           # exec-once = default_wall 
+           # exec-once = default_wall
 
            #------------#
            # auto start #
@@ -443,7 +400,7 @@ in
            windowrule=workspace name:TG, title:Telegram
            windowrule=workspace name:Music, musicfox
            windowrule=workspace name:CH, firefox
-           windowrule=workspace name:ST, steam 
+           windowrule=workspace name:ST, steam
            windowrule=float,ncmpcpp
            windowrule=move 25%-,ncmpcpp
            windowrule=size 960 540,ncmpcpp

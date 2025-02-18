@@ -11,8 +11,8 @@
     GTK_THEME = "Catppuccin-Frappe-Pink";
   };
   home.pointerCursor = {
-    package = pkgs.catppuccin-cursors;
-    name = "Catppuccin-Frappe-Dark";
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
     size = 16;
   };
   home.pointerCursor.gtk.enable = true;

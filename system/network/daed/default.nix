@@ -25,13 +25,17 @@
   };
 
   sops.secrets = {
-    "dae/ecy" = { };
-    "dae/dau" = { };
+    "dae/pari/vless" = { };
+    "dae/pari/tuic" = { };
+    "dae/pari/hysteria2" = { };
+    # "dae/ecy" = { };
+    # "dae/dau" = { };
     "dae/new" = { };
     "dae/dns" = { };
     "dae/group" = { };
     "dae/routing" = { };
   };
+  sops.templates."config.dae".reloadUnits = [ "dae.service" ];
   sops.templates."config.dae".content = ''
     global {
       log_level: info
@@ -49,12 +53,14 @@
     }
 
     subscription {
-      dau: '${config.sops.placeholder."dae/dau"}'
-      ecy: '${config.sops.placeholder."dae/ecy"}'
-      new: '${config.sops.placeholder."dae/new"}'
+      new-file: '${config.sops.placeholder."dae/new"}'
     }
 
-    node { }
+    node {
+      vless: '${config.sops.placeholder."dae/pari/vless"}'
+      tuic: '${config.sops.placeholder."dae/pari/tuic"}'
+      hysteria2: '${config.sops.placeholder."dae/pari/hysteria2"}'
+    }
 
     ${config.sops.placeholder."dae/dns"}
 

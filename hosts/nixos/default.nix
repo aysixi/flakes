@@ -28,11 +28,13 @@
       libvdpau-va-gl
       intel-ocl
       intel-media-sdk
+      # intel-compute-runtime
     ];
   };
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
+  # hardware.opengl.enable = true;
 
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
