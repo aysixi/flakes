@@ -65,6 +65,7 @@
       socat
       sops
       lsof
+      nix-output-monitor
     ];
   };
 

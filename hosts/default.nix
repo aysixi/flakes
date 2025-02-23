@@ -39,7 +39,7 @@
           inputs.sops-nix.nixosModules.sops
           inputs.impermanence.nixosModules.impermanence
           inputs.disko.nixosModules.disko
-          inputs.home-manager.nixosModule
+          inputs.home-manager.nixosModules.home-manager
 
           inputs.daeuniverse.nixosModules.dae
           inputs.daeuniverse.nixosModules.daed

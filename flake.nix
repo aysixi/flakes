@@ -167,6 +167,10 @@
       url = "github:aysixi/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixyDomains = {
+      url = "github:oluceps/nixyDomains";
+      flake = false;
+    };
     tlock = {
       url = "git+https://github.com/eklairs/tlock?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
