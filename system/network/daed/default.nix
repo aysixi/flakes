@@ -6,7 +6,7 @@
 }:
 {
   environment.systemPackages = with inputs.daeuniverse.packages.x86_64-linux; [
-    # dae
+    dae-unstable
     daed
   ];
 
@@ -40,15 +40,7 @@
   };
 
   sops.secrets = {
-    "dae/pari/vless" = { };
-    "dae/pari/tuic" = { };
-    "dae/pari/hysteria2" = { };
-    # "dae/ecy" = { };
-    # "dae/dau" = { };
-    "dae/new" = { };
-    "dae/dns" = { };
-    "dae/group" = { };
-    "dae/routing" = { };
+    "dae" = { };
   };
   sops.templates."config.dae".reloadUnits = [ "dae.service" ];
   sops.templates."config.dae".content = ''
@@ -56,7 +48,7 @@
       tproxy_port: 12345
       log_level: info
 
-      tcp_check_url: 'http://cp.cloudflare.com'
+      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1,2606:4700:4700::1111'
       udp_check_dns: 'dns.google.com:53,114.114.114.114:53,2001:4860:4860::8888,1.1.1.1:53'
       check_interval: 20s
       check_tolerance: 100ms
@@ -67,7 +59,7 @@
       allow_insecure: false
       auto_config_kernel_parameter: true
       check_interval: 300s
-      dial_mode: domain
+      dial_mode: domain++
       allow_insecure: false
 
       disable_waiting_network: false
@@ -77,22 +69,10 @@
       tls_implementation: utls
       utls_imitate: chrome_auto
       mptcp: true
+      bandwidth_max_tx: '200 mbps'
+      bandwidth_max_rx: '1 gbps'
     }
 
-    subscription {
-      new-file: '${config.sops.placeholder."dae/new"}'
-    }
-
-    node {
-      vless: '${config.sops.placeholder."dae/pari/vless"}'
-      tuic: '${config.sops.placeholder."dae/pari/tuic"}'
-      hysteria2: '${config.sops.placeholder."dae/pari/hysteria2"}'
-    }
-
-    ${config.sops.placeholder."dae/dns"}
-
-    ${config.sops.placeholder."dae/group"}
-
-    ${config.sops.placeholder."dae/routing"}
+    ${config.sops.placeholder."dae"}
   '';
 }
