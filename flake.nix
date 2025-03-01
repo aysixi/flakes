@@ -171,10 +171,6 @@
       url = "github:oluceps/nixyDomains";
       flake = false;
     };
-    tlock = {
-      url = "git+https://github.com/eklairs/tlock?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur.url = "github:nix-community/NUR";
     daeuniverse.url = "github:daeuniverse/flake.nix";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -186,23 +182,17 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      # "https://hyprland.cachix.org"
-      "https://ruixi-rebirth.cachix.org"
       "https://cache.nixos.org"
       "https://nixpkgs-wayland.cachix.org"
       "https://cache.garnix.io"
       "https://gomibox.cachix.org"
-      "https://yazi.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "ruixi-rebirth.cachix.org-1:ypGqoIU9MfXwv/fE02ZGg8mutJqmcYHgLTR1DMoPGac="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "gomibox.cachix.org-1:M3V3Xzc+tMCxAMf4GzGkhGebm00Lk3vLEgU7f97JL/8="
-      "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
     ];
     trusted-users = [
       "root"

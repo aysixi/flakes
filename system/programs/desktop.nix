@@ -48,28 +48,23 @@
   };
 
   environment = {
-    systemPackages =
-      with pkgs;
-      [
-        libnotify
-        wl-clipboard
-        wlr-randr
-        xorg.xeyes
-        nemo
-        wev
-        wf-recorder
-        pulsemixer
-        sshpass
-        imagemagick
-        grim
-        slurp
-        linux-wifi-hotspot
-        scrcpy
-        qbittorrent-enhanced
-      ]
-      ++ [
-        inputs.tlock.packages.${system}.default
-      ];
+    systemPackages = with pkgs; [
+      libnotify
+      wl-clipboard
+      wlr-randr
+      xorg.xeyes
+      nemo
+      wev
+      wf-recorder
+      pulsemixer
+      sshpass
+      imagemagick
+      grim
+      slurp
+      linux-wifi-hotspot
+      scrcpy
+      qbittorrent-enhanced
+    ];
     variables.NIXOS_OZONE_WL = "1";
   };
 

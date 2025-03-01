@@ -39,10 +39,10 @@
     "aysixi-sec": {
       "flake": false,
       "locked": {
-        "lastModified": 1740553390,
-        "narHash": "sha256-rwxbYSjVVkcBEXH8G9o8x0kj2QFuthWszqt6FWO+iu0=",
+        "lastModified": 1740790027,
+        "narHash": "sha256-BZiAPZ1qYm9KSOVcTE6OOwZWvMQ+bEa2LGerRjNCMq4=",
         "ref": "main",
-        "rev": "78c76d7233c879e403110ce60d7ec9eb043d0bc2",
+        "rev": "8a8a2ca6709e1e9489de98d1f4e7447fd1b3c719",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/aysixi/secrets.git"
@@ -315,24 +315,6 @@
         "owner": "hercules-ci",
         "repo": "flake-parts",
         "rev": "32ea77a06711b758da0ad9bd6a844c5740a87abd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_12": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_7"
-      },
-      "locked": {
-        "lastModified": 1714641030,
-        "narHash": "sha256-yzcRNDoyVP7+SCNX0wmuDju1NUCt8Dz9+lyUXEI0dbI=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "e5d10a24b66c3ea8f150e47dfdb0416ab7c3390e",
         "type": "github"
       },
       "original": {
@@ -1225,18 +1207,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/5487e69da40cbd611ab2cadee0b4637225f7cfae.tar.gz"
       }
     },
-    "nixpkgs-lib_7": {
-      "locked": {
-        "lastModified": 1714640452,
-        "narHash": "sha256-QBx10+k6JWz6u7VsohfSw8g8hjdBZEf8CFzXH1/1Z94=",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/50eb7ecf4cd0a5756d7275c8ba36790e5bd53e33.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/50eb7ecf4cd0a5756d7275c8ba36790e5bd53e33.tar.gz"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -1713,7 +1683,6 @@
         "nvim-flake": "nvim-flake",
         "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix",
-        "tlock": "tlock",
         "treefmt-nix": "treefmt-nix_7",
         "yazi": "yazi"
       }
@@ -1856,29 +1825,6 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
-      }
-    },
-    "tlock": {
-      "inputs": {
-        "flake-parts": "flake-parts_12",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1716429453,
-        "narHash": "sha256-6raIb7D7B/KQtKy63ixVRAJ7AN30JI7w/XGI2W8fuRk=",
-        "ref": "refs/heads/main",
-        "rev": "5091452ae294c4b424293ae4ffdcdbc8f04601fb",
-        "revCount": 343,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/eklairs/tlock"
-      },
-      "original": {
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/eklairs/tlock"
       }
     },
     "treefmt-nix": {

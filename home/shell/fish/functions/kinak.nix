@@ -13,12 +13,6 @@
     cp ~/misskey_all.tar.gz.age $misskey_path
   end
 
-  function kinak_tloc
-    tar -czvf ~/tlock.tar.gz ~/.local/share/tlock/
-    age -p -o ~/tlock.tar.gz.age ~/tlock.tar.gz
-    mv ~/tlock.tar.gz.age ~/rclone/secrets🔑/decrypt/
-  end  
-
   function kinak_menu
 
     read -s -P "Enter rclone password: " RCLONE_CONFIG_PASS
@@ -55,20 +49,20 @@
         restic -r rclone:restic-local: backup --tag Documents📚 ~/Documents/
         echo -e "Documents 🌟\n"
         restic -r rclone:restic-local: backup --tag rclone🌌 ~/rclone/
-        echo -e "rclone 🌟\n" 
+        echo -e "rclone 🌟\n"
         restic -r rclone:restic-local: backup --tag 真紅の魔法書📖 ~/真紅の魔法書/
         echo -e "真紅の魔法書 🌟\n"
       case "2"
         echo -e "Start gc"
-        restic -r rclone:restic-local: forget --keep-last 1 --prune 
+        restic -r rclone:restic-local: forget --keep-last 1 --prune
       case "3"
         echo -e "Start push"
         rclone sync ~/restic google:restic -P #restic
 
         rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P #secrets all
 
-        tar -czvf ~/password-store.tar.gz ~/.local/share/password-store/ #password-store 
-        age -p -o ~/password-store.tar.gz.age ~/password-store.tar.gz 
+        tar -czvf ~/password-store.tar.gz ~/.local/share/password-store/ #password-store
+        age -p -o ~/password-store.tar.gz.age ~/password-store.tar.gz
         echo -e "test unlock🔓"
         age -d ~/password-store.tar.gz.age > /dev/null
         if test $status -eq 0
