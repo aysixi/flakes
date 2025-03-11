@@ -346,6 +346,7 @@ in
       exec-once = nm-applet &
       exec-once = mako &
       exec-once = mpd &
+      exec-once = hypridle
 
       #---------------#
       # windows rules #
