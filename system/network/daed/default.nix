@@ -50,16 +50,15 @@
 
       tcp_check_http_method: HEAD
       tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1,2606:4700:4700::1111'
-      udp_check_dns: 'dns.google.com:53,8.8.8.8,2001:4860:4860::8888'
+      udp_check_dns: '8.8.8.8:53,114.114.114.114:53,2001:4860:4860::8888,1.1.1.1:53'
       check_interval: 20s
-      check_tolerance: 100ms
+      check_tolerance: 50ms
 
       lan_interface: enp7s0
       wan_interface: auto
 
       allow_insecure: false
       auto_config_kernel_parameter: true
-      check_interval: 300s
       dial_mode: domain++
       allow_insecure: false
 
@@ -69,7 +68,7 @@
       sniffing_timeout: 100ms
       tls_implementation: utls
       utls_imitate: chrome_auto
-      mptcp: false
+      mptcp: true
       bandwidth_max_tx: '200 mbps'
       bandwidth_max_rx: '1 gbps'
     }

@@ -11,6 +11,8 @@
 
   programs.git.enable = true;
 
+  programs.nix-ld.enable = true;
+
   time.timeZone = "Asia/Tokyo";
 
   i18n = {
@@ -46,6 +48,7 @@
     binsh = "${pkgs.dash}/bin/dash";
     shells = with pkgs; [ fish ];
     systemPackages = with pkgs; [
+      nix-tree
       gcc
       clang
       gdb

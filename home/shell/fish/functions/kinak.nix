@@ -1,16 +1,14 @@
 { mi, ... }:
 ''
   function kinak_miss
+    set -lx FILE "$(date "+%Y-%m-%d"T"%H:%M:%S")"
     set -lx misskey_path '/home/mafuyu/rclone/misskey'
-    pg_dump -U misskey -h localhost -p 5432 -d misskey -F c -f ~/rclone/misskey/misskey.dump
-    sudo cp -r /var/lib/redis-misskey/dump.rdb $misskey_path/dump.rdb
-    sudo chown mafuyu $misskey_path/dump.rdb
-    sudo cp -r /var/lib/private/misskey/ $misskey_path/ #storage
-    sudo chown -R mafuyu $misskey_path/misskey         #storage
-    tar -czvf ~/misskey_all.tar.gz $misskey_path
-    age -p -o ~/misskey_all.tar.gz.age ~/misskey_all.tar.gz
-    rm -r ~/rclone/misskey/*
-    cp ~/misskey_all.tar.gz.age $misskey_path
+    pg_dump -U misskey -h /var/run/postgresql -p 5432 -d misskey -F c -f ~/rclone/misskey/postgresql-$FILE.dump
+    sudo cp -r /var/lib/redis-misskey/ $misskey_path/redis-$FILE.rdb
+    sudo cp -r /var/lib/private/ $misskey_path/misskey-$FILE
+    sudo cp -r /var/lib/private/meilisearch $misskey_path/meilisearch-$FILE
+    sudo chown -R mafuyu $misskey_path
+    # tar -czvf ~/misskey_all.tar.gz $misskey_path
   end
 
   function kinak_menu
@@ -61,12 +59,12 @@
 
         rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P #secrets all
 
-        tar -czvf ~/password-store.tar.gz ~/.local/share/password-store/ #password-store
-        age -p -o ~/password-store.tar.gz.age ~/password-store.tar.gz
+        tar -czvf ~/password.tar.gz ~/rclone/password/ #password-store
+        age -p -o ~/password.tar.gz.age ~/password.tar.gz
         echo -e "test unlock🔓"
         age -d ~/password-store.tar.gz.age > /dev/null
         if test $status -eq 0
-        rclone copy ~/password-store.tar.gz.age google:/rclone/ -P
+        rclone copy ~/password.tar.gz.age google:/rclone/ -P
         echo -e "all in🌟\n"
         else
           echo "error"

@@ -64,9 +64,12 @@
       linux-wifi-hotspot
       scrcpy
       qbittorrent-enhanced
+      kitty
     ];
-    variables.NIXOS_OZONE_WL = "1";
+    sessionVariables.NIXOS_OZONE_WL = "1";
   };
+
+  programs.hyprland.enable = true;
 
   services.xserver = {
     # xkb.options = "caps:escape";

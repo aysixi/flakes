@@ -204,7 +204,6 @@ in
       bind = $mainMod, H, workspace, -1
       bind = $mainMod, period, workspace, e+1
       bind = $mainMod, comma, workspace,e-1
-      bind = $mainMod, T, workspace,TG
       bind = $mainMod, M, workspace,Music
       bind = $mainMod, Q, workspace,CH
       bind = $mainMod, S, workspace,ST
@@ -375,7 +374,7 @@ in
       windowrule=size 960 540,nemo
       windowrulev2=opacity 0.95,class:org.telegram.desktop
       windowrule=animation slide right,kitty
-      windowrulev2=workspace name:TG, class:org.telegram.desktop
+      windowrulev2=workspace name:CH, class:org.telegram.desktop
       windowrule=workspace name:Music, musicfox
       windowrule=workspace name:CH, firefox
       windowrule=workspace name:ST, steam

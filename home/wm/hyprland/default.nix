@@ -3,7 +3,8 @@
   imports = [ ./config.nix ];
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = null;
+    portalPackage = null;
     plugins = [
       # inputs.hycov.packages.${pkgs.system}.hycov
     ];

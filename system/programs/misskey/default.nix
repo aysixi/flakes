@@ -5,6 +5,12 @@
   ...
 }:
 {
+  environment = {
+    systemPackages = with pkgs; [
+      pnpm_9
+      nodejs_20
+    ];
+  };
   sops.secrets = {
     # "misskey/database" = { mode = "0744"; };
     "misskey/redis" = {
@@ -48,6 +54,16 @@
     '';
     extensions = with pkgs; [
       postgresql15JitPackages.pgroonga
+    ];
+  };
+
+  services.postgresqlBackup = {
+    enable = true;
+    pgdumpOptions = "-F c";
+    startAt = "*-*-* 13:00:00";
+    location = "/var/backup/postgresql";
+    databases = [
+      "misskey"
     ];
   };
 
@@ -123,7 +139,7 @@
               proxy_set_header Host $host;
               proxy_redirect off;
 
-              # If it's behind another reverse proxy or CDN, remove the following. 
+              # If it's behind another reverse proxy or CDN, remove the following.
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Proto https;

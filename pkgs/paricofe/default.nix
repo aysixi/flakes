@@ -23,8 +23,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "paricafe";
     repo = "misskey";
-    rev = "refs/heads/" + finalAttrs.version;
-    hash = "sha256-1i0uofU24f5F86fkVTi4mw4hXmwKEytqTDayO9gF66I=";
+    rev = "a58a35d319a214726c41bf5a3f76b4958b3f3b4b";
+    hash = "sha256-V1e3UcitCa2e+eYh19hKDwIppPvWE0Vyxtfwf1hqmMM=";
     fetchSubmodules = true;
   };
 
@@ -37,11 +37,13 @@ stdenv.mkDerivation (finalAttrs: {
   # https://nixos.org/manual/nixpkgs/unstable/#javascript-pnpm
   pnpmDeps = pnpm_9.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-iNraaG7af6tRfyocNKDxQ4Pv30HuDd0C+/4T2xm+Qh8=";
+    hash = "sha256-R6Ap/cjNCaCh6eRbJvgTd8rFIYisgoFrAkqEZO3URjk=";
   };
 
   buildPhase = ''
     runHook preBuild
+
+    pnpm config set frozen-lockfile false
 
     # https://github.com/NixOS/nixpkgs/pull/296697/files#r1617546739
     (

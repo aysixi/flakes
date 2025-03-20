@@ -44,7 +44,7 @@
          #context-sendbackground,
          #context-sendlinktodevice,
          #context-sendlinktodevice + menuseparator,
-         #context-copylink,
+         context-copylink,
          #context-stripOnShareLink,
          #context-savelink,
          #context-sep-screenshots {

@@ -2,10 +2,11 @@
   pkgs,
   config,
   lib,
+  mi,
   ...
 }:
 let
-  passwordStoreDir = "${config.xdg.dataHome}/password-store";
+  passwordStoreDir = "/home/${mi.userName}/rclone/password";
 in
 {
 
