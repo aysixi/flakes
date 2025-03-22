@@ -124,11 +124,6 @@
             port = 443;
             ssl = true;
           }
-          {
-            addr = "[::]";
-            port = 20000;
-            ssl = true;
-          }
         ];
         locations = {
           "/" = {

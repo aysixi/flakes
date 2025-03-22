@@ -7,6 +7,7 @@ let
     "zathura"
     "youtube-tui"
     "prismlauncher"
+    "dbclient"
   ];
   directories = builtins.filter (
     name: directoryContents."${name}" == "directory" && !(builtins.elem name excludeDirs)

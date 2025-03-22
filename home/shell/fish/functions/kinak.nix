@@ -6,7 +6,6 @@
     pg_dump -U misskey -h /var/run/postgresql -p 5432 -d misskey -F c -f ~/rclone/misskey/postgresql-$FILE.dump
     sudo cp -r /var/lib/redis-misskey/ $misskey_path/redis-$FILE.rdb
     sudo cp -r /var/lib/private/ $misskey_path/misskey-$FILE
-    sudo cp -r /var/lib/private/meilisearch $misskey_path/meilisearch-$FILE
     sudo chown -R mafuyu $misskey_path
     # tar -czvf ~/misskey_all.tar.gz $misskey_path
   end

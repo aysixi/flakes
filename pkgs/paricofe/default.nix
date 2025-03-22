@@ -18,13 +18,13 @@
 stdenv.mkDerivation (finalAttrs: {
   pname = "paricofe";
 
-  version = "pari";
+  version = "2025.3.1-pari-alpha.9";
 
   src = fetchFromGitHub {
-    owner = "paricafe";
-    repo = "misskey";
-    rev = "a58a35d319a214726c41bf5a3f76b4958b3f3b4b";
-    hash = "sha256-V1e3UcitCa2e+eYh19hKDwIppPvWE0Vyxtfwf1hqmMM=";
+    owner = "aysixi";
+    repo = "pnpm";
+    rev = "7f7c505e7a057f1bd7644d15af79cb561acdf9e4";
+    hash = "sha256-k+Kokh6hEKanHUdFSqRzbzRKccqde7fXTMJ2P/AI1vY=";
     fetchSubmodules = true;
   };
 
@@ -37,13 +37,12 @@ stdenv.mkDerivation (finalAttrs: {
   # https://nixos.org/manual/nixpkgs/unstable/#javascript-pnpm
   pnpmDeps = pnpm_9.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-R6Ap/cjNCaCh6eRbJvgTd8rFIYisgoFrAkqEZO3URjk=";
+    hash = "sha256-cAxqmzXL3dI8D9nE+CI+3LeY4hM4hcvGhJmf3uE3f7U=";
   };
 
   buildPhase = ''
     runHook preBuild
 
-    pnpm config set frozen-lockfile false
 
     # https://github.com/NixOS/nixpkgs/pull/296697/files#r1617546739
     (
