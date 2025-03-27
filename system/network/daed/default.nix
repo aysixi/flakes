@@ -5,16 +5,24 @@
   ...
 }:
 {
-  environment.systemPackages = with inputs.daeuniverse.packages.x86_64-linux; [
-    dae-unstable
-    daed
-  ];
+  environment = {
+    etc."dae/secret.dae".source = config.sops.templates."config.dae".path;
+    systemPackages = with inputs.daeuniverse.packages.x86_64-linux; [
+      dae-unstable
+      daed
+    ];
+  };
 
   services.dae = {
     enable = true;
     disableTxChecksumIpGeneric = false;
     package = inputs.daeuniverse.packages.x86_64-linux.dae-unstable;
-    configFile = config.sops.templates."config.dae".path;
+    config = ''
+      include {
+          secret.dae
+      }
+    '';
+    # configFile = config.sops.templates."config.dae".path;
     assetsPath = toString (
       pkgs.symlinkJoin {
         name = "dae-assets-nixy";

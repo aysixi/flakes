@@ -10,6 +10,7 @@
         "/etc/secureboot"
         "/etc/daed"
         "/etc/dae-wing"
+        "/etc/dae"
         "/etc/nginx"
       ];
       files = [
@@ -18,7 +19,7 @@
       ];
       users.${mi.userName} = {
         directories = [
-          "真紅の魔法書"
+          "nikki"
           # "Blog"
           "Downloads"
           "Music"
