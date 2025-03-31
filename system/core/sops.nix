@@ -26,6 +26,12 @@
         owner = "${mi.userName}";
         path = "/home/" + "${mi.userName}" + "/.ssh/openwrt";
       };
+      OPENAI_API_KEY = {
+        owner = "${mi.userName}";
+      };
+      CACHIX_AUTH_TOKEN = {
+        owner = "${mi.userName}";
+      };
     };
   };
   # issue: https://github.com/Mic92/sops-nix/issues/149
@@ -41,4 +47,12 @@
     };
     script = config.system.activationScripts.setupSecrets.text;
   };
+
+  programs.fish = lib.mkIf config.programs.fish.enable {
+    shellInit = ''
+      export OPENAI_API_KEY="$(cat ${config.sops.secrets.OPENAI_API_KEY.path})"
+      export CACHIX_AUTH_TOKEN="$(cat ${config.sops.secrets.CACHIX_AUTH_TOKEN.path})"
+    '';
+  };
+
 }

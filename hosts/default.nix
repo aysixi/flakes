@@ -43,6 +43,7 @@
 
           inputs.daeuniverse.nixosModules.dae
           inputs.daeuniverse.nixosModules.daed
+          # inputs.stylix.nixosModules.stylix
           {
             home-manager = {
               useGlobalPkgs = true;

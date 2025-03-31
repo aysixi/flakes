@@ -155,6 +155,7 @@
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
+    # stylix.url = "github:danth/stylix";
     nixd.url = "github:nix-community/nixd";
     nvim-flake.url = "github:aysixi/nvim-flake";
     # nvim-flake.url = "/home/kotori/Documents/nvim-flake";

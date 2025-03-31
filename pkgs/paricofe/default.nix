@@ -18,13 +18,13 @@
 stdenv.mkDerivation (finalAttrs: {
   pname = "paricofe";
 
-  version = "2025.3.1-pari-alpha.9";
+  version = "2025.3.1-pari-alpha.18";
 
   src = fetchFromGitHub {
     owner = "aysixi";
-    repo = "pnpm";
-    rev = "7f7c505e7a057f1bd7644d15af79cb561acdf9e4";
-    hash = "sha256-k+Kokh6hEKanHUdFSqRzbzRKccqde7fXTMJ2P/AI1vY=";
+    repo = "misskey";
+    rev = "refs/heads/pari";
+    hash = "sha256-/9nc9vT5LLhVaD65Yt3wCTYb67r2ihR4vlQjCQsuNaA=";
     fetchSubmodules = true;
   };
 
@@ -37,7 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
   # https://nixos.org/manual/nixpkgs/unstable/#javascript-pnpm
   pnpmDeps = pnpm_9.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-cAxqmzXL3dI8D9nE+CI+3LeY4hM4hcvGhJmf3uE3f7U=";
+    hash = "sha256-xvN3quIp5OEhCUEh6GS1R7JQXDCfUMA763pdNuEXx98=";
   };
 
   buildPhase = ''
