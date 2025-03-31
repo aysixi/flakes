@@ -1469,11 +1469,11 @@
         "vim-translator": "vim-translator"
       },
       "locked": {
-        "lastModified": 1743417288,
-        "narHash": "sha256-3i3pf3Gd5LH62nrEPlH/Fe0FLv7wx9eOW1tX58NJEY4=",
+        "lastModified": 1743421234,
+        "narHash": "sha256-EpPSt4In+bKN6Mwa7n3PD0fp+hZ4e3DcUHn9qWq1GU8=",
         "owner": "aysixi",
         "repo": "nvim-flake",
-        "rev": "a220f22c6313051b3333f84ff6182f8c3ae512e4",
+        "rev": "da4120f157cef490244d619def975290488ef265",
         "type": "github"
       },
       "original": {

@@ -45,10 +45,12 @@
         echo -e "Video 🌟\n"
         restic -r rclone:restic-local: backup --tag Documents📚 ~/Documents/
         echo -e "Documents 🌟\n"
-        restic -r rclone:restic-local: backup --tag rclone🌌 ~/rclone/
+        restic -r rclone:restic-local: backup --tag rclone🌌 ~/rclone
         echo -e "rclone 🌟\n"
-        restic -r rclone:restic-local: backup --tag 真紅の魔法書📖 ~/真紅の魔法書/
-        echo -e "真紅の魔法書 🌟\n"
+        restic -r rclone:restic-local: backup --tag nikki🍰 ~/nikki
+        echo -e "nikki 🌟\n"
+        restic -r rclone:restic-local: backup --tag Projects ~/Projects
+        echo -e "Projects 🌟\n"
       case "2"
         echo -e "Start gc"
         restic -r rclone:restic-local: forget --keep-last 1 --prune

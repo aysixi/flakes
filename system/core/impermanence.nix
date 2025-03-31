@@ -33,7 +33,7 @@
           ".thunderbird"
           "flakes"
           "Kvm"
-          # "Projects"
+          "Projects"
           "rclone"
           "restic"
           # "win"
