@@ -64,7 +64,6 @@
       linux-wifi-hotspot
       scrcpy
       qbittorrent-enhanced
-      kitty
     ];
     sessionVariables.NIXOS_OZONE_WL = "1";
   };

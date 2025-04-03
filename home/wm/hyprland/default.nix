@@ -26,6 +26,7 @@
         # swaylock-effects
         # swayidle
         pamixer
+        hyprsunset
         # aegisub
       ]);
   };

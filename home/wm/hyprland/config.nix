@@ -207,7 +207,6 @@ in
       bind = $mainMod, M, workspace,Music
       bind = $mainMod, Q, workspace,CH
       bind = $mainMod, S, workspace,ST
-      bind = $mainMod, w, workspace,絵
 
       #-------------------------------#
       # special workspace(scratchpad) #
