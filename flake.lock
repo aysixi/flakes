@@ -39,10 +39,10 @@
     "aysixi-sec": {
       "flake": false,
       "locked": {
-        "lastModified": 1743415719,
-        "narHash": "sha256-kEr2lWnlsSfluqq9h8hQmPq8EGSH61ZA3FsKkMixh64=",
+        "lastModified": 1743737318,
+        "narHash": "sha256-FCMzUup5zfwj5COw+2BL3s35IGNq1KmTbTk0ELclvEM=",
         "ref": "main",
-        "rev": "30fdb2fffe077ff07c9b82e7df35210d98fa003b",
+        "rev": "e39d819d0d9590ece2ee0e65860697cd33c2cac1",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/aysixi/secrets.git"

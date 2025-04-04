@@ -32,11 +32,20 @@
         port = 6600;
       };
       extraConfig = ''
-        audio_output {
-                type            "pipewire"
-                name            "PipeWire Sound Server"
+          audio_output {
+                  type            "pipewire"
+                  name            "PipeWire Sound Server"
+          }
+          decoder {
+                plugin "fluidsynth"
+                soundfont "${pkgs.soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2"
         }
       '';
+    };
+    fluidsynth = {
+      enable = true;
+      # soundFont = "";
+      soundService = "pipewire-pulse";
     };
   };
 }

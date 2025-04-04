@@ -107,6 +107,8 @@
     "adbuser"
   ];
 
+  services.mpd.fluidsynth = true;
+
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
