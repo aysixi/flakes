@@ -12,7 +12,7 @@
         ''
           set TTY1 (tty)
           [ "$TTY1" = "/dev/tty1" ] && exec sway
-                  	''
+        ''
       else
         '''';
     interactiveShellInit = ''
@@ -33,6 +33,12 @@
     functions = {
       f = ''
         	FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' FZF_DEFAULT_OPTS="--color=bg+:#000000,bg:#1E2031,spinner:#F3D398,hl:#F28FAD --color=fg:#C8D3F8,header:#F28FAD,info:#7AD9E5,pointer:#F3D398 --color=marker:#F3D398,fg+:#97DC8D,prompt:#7AD9E5,hl+:#F28FAD --preview 'bat --style=numbers --color=always --line-range :500 {}'" fzf --height 60% --layout reverse --info inline --border --color 'border:#b48ead'
+      '';
+      # https://github.com/fish-shell/fish-shell/issues/11282
+      fish_user_key_bindings = ''
+        bind \cc 'cancel-commandline'
+        bind --preset -M insert \cc cancel-commandline
+        bind --preset -m insert \cc cancel-commandline repaint-mode
       '';
     };
   };
