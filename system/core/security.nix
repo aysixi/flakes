@@ -27,7 +27,7 @@
       {
         domain = "@audio";
         type = "-";
-        item = "rtprio";
+        item = "memlock";
         value = "unlimited";
       }
     ];
