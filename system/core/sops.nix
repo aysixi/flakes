@@ -32,6 +32,12 @@
       CACHIX_AUTH_TOKEN = {
         owner = "${mi.userName}";
       };
+      GITHUB_TOKEN = {
+        owner = "${mi.userName}";
+      };
+      NIX_ACCESS_TOKENS = {
+        owner = "${mi.userName}";
+      };
     };
   };
   # issue: https://github.com/Mic92/sops-nix/issues/149
@@ -52,6 +58,8 @@
     shellInit = ''
       export OPENAI_API_KEY="$(cat ${config.sops.secrets.OPENAI_API_KEY.path})"
       export CACHIX_AUTH_TOKEN="$(cat ${config.sops.secrets.CACHIX_AUTH_TOKEN.path})"
+      export GITHUB_TOKEN="$(cat ${config.sops.secrets.GITHUB_TOKEN.path})"
+      export NIX_ACCESS_TOKENS="$(cat ${config.sops.secrets.NIX_ACCESS_TOKENS.path})"
     '';
   };
 

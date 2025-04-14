@@ -14,12 +14,12 @@
   };
 
   services.dae = {
-    enable = false;
+    enable = true;
     disableTxChecksumIpGeneric = false;
     package = inputs.daeuniverse.packages.x86_64-linux.dae-unstable;
     config = ''
       include {
-          secret.dae
+          # secret.dae
           fix.dae
       }
     '';
@@ -40,7 +40,7 @@
   };
 
   services.daed = {
-    enable = true;
+    enable = false;
     listen = "0.0.0.0:25567";
     openFirewall = {
       enable = true;
