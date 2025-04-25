@@ -10,17 +10,16 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "sonico98";
     repo = "exifaudio.yazi";
-    rev = "d7946141c87a23dcc6fb3b2730a287faf3154593";
-    sha256 = "sha256-nXBxPG6PVi5vstvVMn8dtnelfCa329CTIOCdXruOxT4=";
+    rev = "7ff714155f538b6460fdc8e911a9240674ad9b89";
+    sha256 = "sha256-qRUAKlrYWV0qzI3SAQUYhnL3QR+0yiRc+0XbN/MyufI=";
   };
   installPhase = ''
     mkdir -p $out/
-    cp -r $src/* $out/
-    # mv $out/init.lua $out/main.lua 
+    cp -r ./* $out/
   '';
   meta = {
     description = "yazi plugin";
-    homepage = "";
+    homepage = "https://github.com/Sonico98/exifaudio.yazi";
     license = lib.licenses.gpl3;
     platforms = lib.platforms.unix;
     maintainers = [ lib.maintainers.null ];
