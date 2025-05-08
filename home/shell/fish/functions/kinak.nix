@@ -61,7 +61,7 @@
         case "1"
           backup_restic flakes❄️  ~/flakes
           backup_restic Pictures🎨 ~/Pictures
-          backup_restic Music🎵 ~/Music/bgm/
+          backup_restic Music🎵 ~/Music/
           backup_restic Video📼 ~/Videos/
           backup_restic Documents📚 ~/Documents/
           backup_restic rclone🌌 ~/rclone
@@ -93,7 +93,11 @@
 
         case "4"
           eval $restic_local snapshots
+          echo - e "\n stats"
+          eval $restic_local stats
           eval $restic_google snapshots
+          echo - e "\n stats"
+          eval $restic_google stats
           echo -e "打印快照\n"
 
         case "5"
@@ -116,7 +120,7 @@
           echo -e "同步远端数据到本地\n"
 
         case "9"
-          read -P "自定义命令\n" whatCommand
+          read -P "自定义命令: " whatCommand
           eval $whatCommand
 
         case '*'
