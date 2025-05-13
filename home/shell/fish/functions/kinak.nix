@@ -54,7 +54,7 @@
       printf "7. 挂载本地存储库到 ~/mnt\n"
       printf "8. 同步远端数据到本地\n"
       printf "9. 自定义命令\n"
-      printf "任意键退出\n\n"
+      printf "======= 任意键退出 ======\n\n"
 
       read -P "选择操作: " answer
       switch $answer
