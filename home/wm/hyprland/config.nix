@@ -208,7 +208,7 @@ in
       bind = $mainMod, H, workspace, -1
       bind = $mainMod, period, workspace, e+1
       bind = $mainMod, comma, workspace,e-1
-      bind = $mainMod, M, workspace,Music
+      bind = $mainMod, M, workspace,MU
       bind = $mainMod, Q, workspace,CH
       bind = $mainMod, S, workspace,ST
 
@@ -378,7 +378,7 @@ in
       windowrulev2=opacity 0.95,class:org.telegram.desktop
       windowrule=animation slide right,class:kitty
       windowrulev2=workspace name:CH,class:org.telegram.desktop
-      windowrule=workspace name:Music,class:musicfox
+      windowrule=workspace name:MU,class:musicfox
       windowrule=workspace name:CH, class:firefox
       windowrule=workspace name:ST, class:steam
       windowrule=float,class:ncmpcpp
