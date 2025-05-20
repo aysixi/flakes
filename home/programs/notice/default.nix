@@ -16,12 +16,11 @@
       progress-color = "over #302d41";
       text-color = "#c0caf5";
       default-timeout = 5000;
-    };
-    criteria = {
       "urgency=high" = {
         text-alignment = "center";
         border-color = "#f8bd96";
       };
+
     };
   };
 }

@@ -74,9 +74,19 @@
 
         case "3"
           # restic copy
-          echo -e "开始备份到Google云\n"
+          echo -e "开始备份到Google云 需要修改\n"
           rclone sync ~/restic google:restic -P
-          rclone sync ~/rclone/secrets🔑 google:/rclone/secrets🔑 -P
+
+          tar -czvf ~/secrets.tar.gz ~/rclone/secrets🔑/
+          age -p -o ~/password.tar.gz.age ~/secrets.tar.gz > /dev/null 2>&1
+
+          echo -e "检查是否正常解密"
+          age -d ~/secrets.tar.gz.age > /dev/null 2>&1
+          if test $status -eq 0
+            rclone copy ~/secrets.tar.gz google:/rclone/ -P
+          else
+            echo "不能正确解密"
+          end
 
           tar -czvf ~/password.tar.gz ~/rclone/password/
           age -p -o ~/password.tar.gz.age ~/password.tar.gz > /dev/null 2>&1
@@ -93,10 +103,10 @@
 
         case "4"
           eval $restic_local snapshots
-          echo - e "\n stats"
+          echo -e "\n stats"
           eval $restic_local stats
           eval $restic_google snapshots
-          echo - e "\n stats"
+          echo -e "\n stats"
           eval $restic_google stats
           echo -e "打印快照\n"
 
