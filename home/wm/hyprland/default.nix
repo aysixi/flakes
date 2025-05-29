@@ -27,6 +27,7 @@
         # swayidle
         pamixer
         hyprsunset
+        # pencil2d
         # aegisub
       ]);
   };
