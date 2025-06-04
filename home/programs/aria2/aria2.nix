@@ -248,7 +248,7 @@
   # true：保存种子文件
   # false：仅下载种子文件
   # mem：将种子保存在内存中
-  follow-torrent=true
+  follow-torrent=false
 
   # 种子文件下载完后暂停任务，默认：false
   # 在开启 follow-torrent 选项后下载种子文件或磁力会自动开始下载任务进行下载，而同时开启当此选项后会建立相关任务并暂停。

@@ -20,6 +20,7 @@
       users.${mi.userName} = {
         directories = [
           "nikki"
+          "anime"
           # "Blog"
           "Downloads"
           "Music"
