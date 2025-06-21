@@ -1,5 +1,5 @@
 {
-  manager = {
+  mgr = {
     linemode = "none";
     mouse_events = [
       "click"

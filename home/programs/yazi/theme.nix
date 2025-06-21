@@ -88,7 +88,7 @@
       reversed = true;
     };
   };
-  manager = {
+  mgr = {
     border_style = {
       fg = "#4C566A";
     };
