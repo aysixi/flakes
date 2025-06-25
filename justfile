@@ -9,7 +9,7 @@ disko:
   nix --extra-experimental-features nix-command --extra-experimental-features flakes run github:nix-community/disko -- --mode zap_create_mount  ./lib/disko/luks-btrfs-subvol.nix
 
 deploy:
-  nixos-rebuild switch --flake . --use-remote-sudo
+  nixos-rebuild switch --flake . --sudo
 
 debug:
   nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose

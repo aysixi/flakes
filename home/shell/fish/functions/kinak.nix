@@ -77,8 +77,11 @@
           echo -e "开始备份到Google云 需要修改\n"
           rclone sync ~/restic google:restic -P
 
+          #-------------#
+          # secrets dir #
+          #-------------#
           tar -czvf ~/secrets.tar.gz ~/rclone/secrets🔑/
-          age -p -o ~/password.tar.gz.age ~/secrets.tar.gz > /dev/null 2>&1
+          age -p -o ~/secrets.tar.gz.age ~/secrets.tar.gz > /dev/null 2>&1
 
           echo -e "检查是否正常解密"
           age -d ~/secrets.tar.gz.age > /dev/null 2>&1
@@ -88,6 +91,9 @@
             echo "不能正确解密"
           end
 
+          #--------------#
+          # password dir #
+          #--------------#
           tar -czvf ~/password.tar.gz ~/rclone/password/
           age -p -o ~/password.tar.gz.age ~/password.tar.gz > /dev/null 2>&1
 
