@@ -35,7 +35,7 @@
           "${mod}/programs/sunshine"
           "${mod}/programs/disk"
           "${mod}/virtualisation"
-          # "${mod}/hardware"
+          "${mod}/hardware"
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.sops-nix.nixosModules.sops
           inputs.impermanence.nixosModules.impermanence

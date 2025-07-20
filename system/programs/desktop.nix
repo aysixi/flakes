@@ -84,6 +84,7 @@
   services = {
     dbus.packages = [ pkgs.gcr ];
     # getty.autologinUser = "${mi.userName}";
+    pipewire.audio.enable = true;
     gvfs.enable = true;
     pipewire = {
       enable = true;
