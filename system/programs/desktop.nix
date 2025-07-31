@@ -69,6 +69,7 @@
   };
 
   programs.hyprland.enable = true;
+  # programs.niri.enable = true;
 
   services.xserver = {
     # xkb.options = "caps:escape";
