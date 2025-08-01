@@ -21,11 +21,12 @@
   # security.pam.services.swaylock = { };
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    # wlr.enable = true;
     configPackages = [ pkgs.gnome-session ];
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gnome
+      # pkgs.xdg-desktop-portal-wlr
     ];
   };
 
@@ -64,12 +65,13 @@
       linux-wifi-hotspot
       scrcpy
       qbittorrent-enhanced
+      xwayland-satellite # niri need
     ];
     sessionVariables.NIXOS_OZONE_WL = "1";
   };
 
-  programs.hyprland.enable = true;
-  # programs.niri.enable = true;
+  # programs.hyprland.enable = true;
+  programs.niri.enable = true;
 
   services.xserver = {
     # xkb.options = "caps:escape";

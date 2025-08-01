@@ -7,8 +7,9 @@
 }:
 {
   imports = [
-    ../../wm/hyprland
+    # ../../wm/hyprland
     # ./wm/sway
+    ../../wm/niri
     ../../wall
     ../../terminals
     ../../editors

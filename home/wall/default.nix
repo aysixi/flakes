@@ -24,7 +24,8 @@ in
       Service = {
         Type = "simple";
         ExecStart = ''
-          ${pkgs.swww}/bin/swww-daemon --format xrgb
+          ${pkgs.swww}/bin/swww-daemon
+          # ${pkgs.swww}/bin/swww-daemon --format xrgb #hyprland
         '';
         ExecStop = "${pkgs.swww}/bin/swww kill";
         Restart = "on-failure";

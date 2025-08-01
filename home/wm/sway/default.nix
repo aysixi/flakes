@@ -1,17 +1,32 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [ ./config.nix ];
 
   wayland.windowManager.sway = {
     enable = true;
+    # package = inputs.nixpkgs-wayland.packages.${pkgs.system}.sway-unwrapped;
     wrapperFeatures.gtk = true;
   };
-  home.packages = with pkgs; [
-    sway-contrib.grimshot
-    swaylock-effects
-    pamixer
-    swayidle
-  ];
+  home.packages =
+    [
+      inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
+    ]
+    ++ (with pkgs; [
+      swaylock-effects
+      sway-contrib.grimshot
+      pamixer
+      swayidle
+      (pkgs.writeShellScriptBin "tt" ''
+        STATUS=$(swaymsg -t get_inputs | jq -r '.[] | select(.type=="touchpad").libinput.send_events')
+        if [[ "$STATUS" == "enabled" ]]; then
+            swaymsg input "type:touchpad" events disabled
+            notify-send "Touchpad disabled"
+        else
+            swaymsg input "type:touchpad" events enabled
+            notify-send "Touchpad enabled"
+        fi
+      '')
+    ]);
 
   systemd.user = {
     targets.sway-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
