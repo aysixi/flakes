@@ -68,7 +68,7 @@
   };
 
   services.redis.servers.misskey.requirePassFile = config.sops.secrets."misskey/redis".path;
-  services.meilisearch.masterKeyEnvironmentFile = config.sops.secrets."misskey/meilisearch".path;
+  services.meilisearch.masterKeyFile = config.sops.secrets."misskey/meilisearch".path;
   services.meilisearch.package = pkgs.meilisearch;
 
   services.misskey = {

@@ -12,37 +12,47 @@
   ffmpeg-headless,
   writeShellScript,
   xcbuild,
-  ...
+  nix-update-script,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "paricofe";
 
-  version = "2025.6.3-pari.11";
+  version = "2025.7.0-pari.1";
 
   src = fetchFromGitHub {
     owner = "aysixi";
     repo = "misskey";
     rev = "refs/heads/pari";
-    hash = "sha256-ZUy6gcbt1huCGzWC5kKod7a2VXBrlfRLoXocd+Ozu8c=";
+    hash = "sha256-8Cimbi984/mxsyBsYldD/my/ULbtL9wdiAzSI64u+QA=";
     fetchSubmodules = true;
   };
+
+  patches = [
+    ./pnpm-lock.yaml.patch
+  ];
 
   nativeBuildInputs = [
     nodejs
     pnpm_9.configHook
     makeWrapper
     python3
-  ] ++ lib.optionals stdenv.hostPlatform.isDarwin [ xcbuild.xcrun ];
+  ] ++ lib.optionals stdenv.hostPlatform.isDarwin [ xcbuild ];
+
   # https://nixos.org/manual/nixpkgs/unstable/#javascript-pnpm
   pnpmDeps = pnpm_9.fetchDeps {
-    inherit (finalAttrs) pname version src;
-    hash = "sha256-yQ7HSCeMDd9uMxNuMJpQztUJ4E4ynrRIgCFIY1mu2QE=";
+    inherit (finalAttrs)
+      pname
+      version
+      src
+      patches
+      ;
+    fetcherVersion = 2;
+    hash = "sha256-2xBwW2sQO9cRXjIRsJ2kUiES0aD/3X8wQ26toBGar0w=";
   };
 
   buildPhase = ''
     runHook preBuild
-
 
     # https://github.com/NixOS/nixpkgs/pull/296697/files#r1617546739
     (
@@ -113,13 +123,15 @@ stdenv.mkDerivation (finalAttrs: {
   passthru = {
     inherit (finalAttrs) pnpmDeps;
     tests.misskey = nixosTests.misskey;
+    updateScript = nix-update-script { };
   };
 
   meta = {
-    description = "🌎 An interplanetary microblogging platform 🚀";
+    description = "Open source, federated social media platform";
     homepage = "https://misskey-hub.net/";
     license = lib.licenses.agpl3Only;
     maintainers = [ lib.maintainers.feathecutie ];
+    teams = [ lib.teams.ngi ];
     platforms = lib.platforms.unix;
     mainProgram = "misskey";
   };

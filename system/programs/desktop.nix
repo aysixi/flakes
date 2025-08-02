@@ -21,12 +21,12 @@
   # security.pam.services.swaylock = { };
   xdg.portal = {
     enable = true;
-    # wlr.enable = true;
+    wlr.enable = true;
     configPackages = [ pkgs.gnome-session ];
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome
-      # pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-wlr
     ];
   };
 

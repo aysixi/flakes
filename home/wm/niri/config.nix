@@ -165,7 +165,7 @@ in
         max-height 540
       }
       window-rule {
-        # match app-id="kitty"
+        // match app-id="kitty"
         open-maximized false
       }
       window-rule {

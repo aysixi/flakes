@@ -26,5 +26,6 @@
   environment.systemPackages = [
     # pkgs.protontricks
     # pkgs.r2modman
+    pkgs.xdg-user-dirs
   ];
 }
