@@ -117,11 +117,7 @@ in
           struts {
           }
       }
-      spawn-at-startup "waybar"
       spawn-at-startup "xwayland-satellite"
-      spawn-at-startup "/nix/store/53idfkc8nx5wy09nr1m49i4q3lvvwnl9-launch_waybar/bin/launch_waybar &"
-      spawn-at-startup "mako"
-
       environment {
           DISPLAY ":0"
       }
@@ -165,11 +161,8 @@ in
         max-height 540
       }
       window-rule {
-        // match app-id="kitty"
-        open-maximized false
-      }
-      window-rule {
         match app-id="firefox"
+        match app-id="kitty"
         open-maximized true
       }
       binds {

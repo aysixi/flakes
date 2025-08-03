@@ -6,7 +6,7 @@
       package = pkgs.rofi-wayland;
     };
     fuzzel = {
-      enable = true;
+      enable = false;
       settings = {
         colors = {
           background = "1e1e2edd";

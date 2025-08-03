@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 {
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "gtk3";

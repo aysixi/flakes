@@ -20,6 +20,8 @@
         "browser.download.lastDir" = "/home/${mi.userName}/Downloads/";
         "ui.key.menuAccessKey" = false;
         "font.name-list.emoji" = "Noto Color Emoji";
+        "browser.theme.content-theme" = 0;
+        "browser.theme.toolbar-theme" = 0;
       };
     };
     profiles.default = {

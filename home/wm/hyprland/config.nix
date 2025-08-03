@@ -100,17 +100,17 @@ in
         inactive_opacity = 1.0
         fullscreen_opacity = 1.0
         shadow {
-        enabled = false
-        range = 4
-        render_power = 3
-        ignore_window = true
-        color = 0x1a1a1aee
-      }
-      # col.shadow =
-      # col.shadow_inactive
-      # shadow_offset
-        dim_inactive = false
-      # dim_strength = #0.0 ~ 1.0
+          enabled = false
+          range = 4
+          render_power = 3
+          ignore_window = true
+          color = 0x1a1a1aee
+        }
+        # col.shadow =
+        # col.shadow_inactive
+        # shadow_offset
+          dim_inactive = false
+        # dim_strength = #0.0 ~ 1.0
 
         blur {
           enabled = true
@@ -345,9 +345,9 @@ in
       # auto start #
       #------------#
       exec-once = ${launch_waybar}/bin/launch_waybar &
-      exec-once = nm-applet &
-      exec-once = mako &
-      exec-once = mpd &
+      # exec-once = nm-applet &
+      # exec-once = mako &
+      # exec-once = mpd &
       exec-once = hypridle
 
       #---------------#
