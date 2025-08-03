@@ -25,7 +25,7 @@
     configPackages = [ pkgs.gnome-session ];
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
+      # pkgs.xdg-desktop-portal-gnome
       pkgs.xdg-desktop-portal-wlr
     ];
   };
@@ -70,8 +70,8 @@
     sessionVariables.NIXOS_OZONE_WL = "1";
   };
 
-  # programs.hyprland.enable = true;
-  programs.niri.enable = true;
+  programs.hyprland.enable = true;
+  # programs.niri.enable = true;
 
   services.xserver = {
     # xkb.options = "caps:escape";
