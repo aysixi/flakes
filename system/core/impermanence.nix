@@ -21,6 +21,7 @@
         directories = [
           "nikki"
           "anime"
+          ".klei"
           # "Blog"
           "Downloads"
           "Music"
