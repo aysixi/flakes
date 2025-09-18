@@ -42,6 +42,12 @@
         IdentitiesOnly yes
         IdentityFile ~/.ssh/vps
     '';
+    matchBlocks."*" = {
+      forwardAgent = false;
+      controlMaster = "auto";
+      controlPersist = "yes";
+    };
   };
+
   services.ssh-agent.enable = true;
 }
