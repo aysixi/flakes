@@ -5,10 +5,11 @@ let
     url = "https://raw.githubusercontent.com/Ruixi-rebirth/someSource/main/watermark/watermark1.png";
     sha256 = "sha256-FUVSKKNv594jaAJGF+m622TkHB+Wwvyewd11WzXbjcQ=";
   };
+  # https://github.com/hyprwm/contrib/issues/143
   grimblast_watermark = pkgs.writeShellScriptBin "grimblast_watermark" ''
     FILE=$(date "+%Y-%m-%d"T"%H:%M:%S").png
     # Get the picture from maim
-    grimblast --notify --cursor save area $HOME/Pictures/src.png >> /dev/null 2>&1
+    grimblast --notify save area $HOME/Pictures/src.png >> /dev/null 2>&1
     # add shadow, round corner, border and watermark
     convert $HOME/Pictures/src.png \
     \( +clone -alpha extract \
@@ -133,8 +134,9 @@ in
       }
 
       gestures {
-        workspace_swipe = true
-        workspace_swipe_fingers = 4
+        # workspace_swipe = true
+        # workspace_swipe_fingers = 4
+        gesture = 3, horizontal, workspace
         workspace_swipe_distance = 250
         workspace_swipe_invert = true
         workspace_swipe_min_speed_to_force = 15
@@ -208,7 +210,6 @@ in
       bind = $mainMod, H, workspace, -1
       bind = $mainMod, period, workspace, e+1
       bind = $mainMod, comma, workspace,e-1
-      bind = $mainMod, M, workspace,MU
       bind = $mainMod, Q, workspace,CH
       bind = $mainMod, S, workspace,ST
 
@@ -275,8 +276,8 @@ in
       bind=$mainMod SHIFT,X,exec,hyprlock
       bind=$mainMod,T,exec,Telegram
       bind = $mainMod,W,exec,bottles-cli run -p sai2 -b 'sai2' -- %u
-      bind=$mainMod,bracketleft,exec,grimblast --notify --cursor  copysave area ~/Pictures/$(date "+%Y-%m-%d"T"%H:%M:%S_no_watermark").png
-      bind=$mainMod,bracketright,exec, grimblast --notify --cursor  copy area
+      bind=$mainMod,bracketleft,exec,grimblast --notify copysave area ~/Pictures/$(date "+%Y-%m-%d"T"%H:%M:%S_no_watermark").png
+      bind=$mainMod,bracketright,exec, grimblast --notify copy area
       bind=$mainMod,A,exec, ${grimblast_watermark}/bin/grimblast_watermark
       bind=,Super_L,exec, pkill rofi || ~/.config/rofi/launcher.sh
       bind=$mainMod,Super_L,exec, bash ~/.config/rofi/powermenu.sh
@@ -375,20 +376,19 @@ in
       windowrule=float,class:nemo
       windowrule=move 25%-,class:nemo
       windowrule=size 960 540,class:nemo
-      windowrulev2=opacity 0.95,class:org.telegram.desktop
+      windowrule=opacity 0.95,class:org.telegram.desktop
       windowrule=animation slide right,class:kitty
-      windowrulev2=workspace name:CH,class:org.telegram.desktop
-      windowrule=workspace name:MU,class:musicfox
-      windowrule=workspace name:CH, class:firefox
-      windowrule=workspace name:ST, class:steam
+      windowrule=workspace name:CH,class:org.telegram.desktop
+      windowrule=workspace name:CH,class:firefox
+      windowrule=workspace name:ST,class:steam
       windowrule=float,class:ncmpcpp
       windowrule=move 25%-,class:ncmpcpp
       windowrule=size 960 540,class:ncmpcpp
       windowrule=noblur,class:^(firefox)$
-      windowrulev2=maximize, class:sai2.exe, title:(.*)PaintTool(.*)
-      windowrulev2=workspace name:絵, class:sai2.exe
-      windowrulev2=size 960 540, class:sai2.exe, title:(.*)新建画布
-
+      windowrule=float,class:^(firefox)$,initialTitle:negative:Mozilla Firefox
+      windowrule=size 960 540,class:^(firefox)$,initialTitle:negative:Mozilla Firefox
+      windowrule=move 25%-,class:^(firefox)$,initialTitle:negative:Mozilla Firefox
+      windowrule=float,class:steam,initialTitle:negative:Steam
       #-----------------#
       # workspace rules #
       #-----------------#

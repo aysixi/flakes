@@ -27,7 +27,7 @@
   boot.extraModulePackages = [ ];
 
   boot.initrd.luks.devices = {
-    cryptroot.device = "/dev/disk/by-uuid/78abcbde-a44b-43b5-86d4-a171a2d92e15";
+    crypted.device = "/dev/disk/by-uuid/78abcbde-a44b-43b5-86d4-a171a2d92e15";
     # luksroot = {
     #   device = "/dev/disk/by-uuid/06c208e0-dae1-4597-98b6-d25bdb609e96";
     #   allowDiscards = true;
