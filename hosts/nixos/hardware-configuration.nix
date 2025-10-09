@@ -23,8 +23,11 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ "usb_storage" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "v4l2loopback"
+  ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
   boot.initrd.luks.devices = {
     crypted.device = "/dev/disk/by-uuid/78abcbde-a44b-43b5-86d4-a171a2d92e15";

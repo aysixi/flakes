@@ -8,6 +8,7 @@ let
     "youtube-tui"
     "prismlauncher"
     "dbclient"
+    "neofetch"
   ];
   directories = builtins.filter (
     name: directoryContents."${name}" == "directory" && !(builtins.elem name excludeDirs)
