@@ -5,7 +5,7 @@
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
     "logo": {
       "type": "kitty-direct",
-      "source": "/home/${mi.userName}/Pictures/wallpaper/nixos_kawaii.png",
+      "source": "/home/${mi.userName}/Pictures/system/nixos_kawaii.png",
       "color": {
         "1": "",
         "2": "",

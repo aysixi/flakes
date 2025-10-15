@@ -275,7 +275,7 @@ in
       bind=$mainMod SHIFT,D,exec,kitty  --class="danmufloat" --hold sh -c "export TERM=xterm-256color && bili"
       bind=$mainMod SHIFT,X,exec,hyprlock
       bind=$mainMod,T,exec,Telegram
-      bind = $mainMod,W,exec,bottles-cli run -p sai2 -b 'sai2' -- %u
+      bind=$mainMod SHIFT,W,exec,bottles-cli run -p sai2 -b 'sai2'
       bind=$mainMod,bracketleft,exec,grimblast --notify copysave area ~/Pictures/$(date "+%Y-%m-%d"T"%H:%M:%S_no_watermark").png
       bind=$mainMod,bracketright,exec, grimblast --notify copy area
       bind=$mainMod,A,exec, ${grimblast_watermark}/bin/grimblast_watermark
