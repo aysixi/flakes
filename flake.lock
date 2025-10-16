@@ -74,22 +74,6 @@
         "type": "github"
       }
     },
-    "copilot-cmp-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1733947099,
-        "narHash": "sha256-erRL8bY/zuwuCZfttw+avTrFV7pjv2H6v73NzY2bymM=",
-        "owner": "zbirenbaum",
-        "repo": "copilot-cmp",
-        "rev": "15fc12af3d0109fa76b60b5cffa1373697e261d1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zbirenbaum",
-        "repo": "copilot-cmp",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1754269165,
@@ -1114,11 +1098,11 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1760574192,
-        "narHash": "sha256-uf3wq8Ds+b44+r5HIZSoypkqRno1Fo4qfCiZsOlvqE0=",
+        "lastModified": 1760582104,
+        "narHash": "sha256-D8n892cvtQSiv2PuD4FnxfUp+fKlKMR0OXzur7odrdQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d84222567f7656e045c7f6e9506ea3e03cc6afef",
+        "rev": "6c6e6d9b1de28d9110fecceef70a68a6a5d54cc4",
         "type": "github"
       },
       "original": {
@@ -1407,22 +1391,6 @@
         "type": "github"
       }
     },
-    "nui-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1749392788,
-        "narHash": "sha256-41slmnvt1z7sCxvpiVuFmQ9g7eCaxQi1dDCL3AxSL1A=",
-        "owner": "MunifTanjim",
-        "repo": "nui.nvim",
-        "rev": "de740991c12411b663994b2860f1a4fd0937c130",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MunifTanjim",
-        "repo": "nui.nvim",
-        "type": "github"
-      }
-    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts_5",
@@ -1470,7 +1438,6 @@
       "inputs": {
         "avante-nvim": "avante-nvim",
         "blink-cmp": "blink-cmp",
-        "copilot-cmp-nvim": "copilot-cmp-nvim",
         "flake-parts": "flake-parts_7",
         "flake-root": "flake-root_3",
         "minuet-ai-nvim": "minuet-ai-nvim",
@@ -1479,17 +1446,16 @@
         "nixpkgs": "nixpkgs_12",
         "nixvim": "nixvim",
         "none-ls-nvim": "none-ls-nvim",
-        "nui-nvim": "nui-nvim",
         "pre-commit-hooks": "pre-commit-hooks",
         "treefmt-nix": "treefmt-nix_4",
         "vim-translator": "vim-translator"
       },
       "locked": {
-        "lastModified": 1760580019,
-        "narHash": "sha256-UWM9iZ7Q/BlAt57kp3g4tdVZYZYA6v79IHvcgWFQ0fU=",
+        "lastModified": 1760583268,
+        "narHash": "sha256-E/UnYNiaCPwF8yCG1Oppsmx6UcB/x1cbUMovzpnfzVY=",
         "owner": "aysixi",
         "repo": "nvim-flake",
-        "rev": "af2c767576d62ed2b7c6610b20fabb0824319b84",
+        "rev": "7f0786569a0ad939c007cdddc74588bed4736a41",
         "type": "github"
       },
       "original": {
