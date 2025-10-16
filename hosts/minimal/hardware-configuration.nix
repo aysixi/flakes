@@ -10,11 +10,12 @@
 }:
 
 {
-  imports =
-    [ ../../lib/disko/luks-btrfs-subvol.nix ]
-    ++ [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    ../../lib/disko/luks-btrfs-subvol.nix
+  ]
+  ++ [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"

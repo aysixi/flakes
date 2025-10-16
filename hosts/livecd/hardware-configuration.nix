@@ -9,11 +9,12 @@
 }:
 
 {
-  imports =
-    [ ../../lib/disko/livecd.nix ]
-    ++ [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    ../../lib/disko/livecd.nix
+  ]
+  ++ [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"

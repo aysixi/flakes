@@ -51,9 +51,10 @@
       #type database  DBuser  auth-method optional_ident_map
       local    all    postgres    peer
       local    all    misskey     peer    map=superuser_map
+      local    all    ${mi.userName}  peer  map=superuser_map
     '';
     extensions = with pkgs; [
-      postgresql15JitPackages.pgroonga
+      postgresql17Packages.pgroonga
     ];
   };
 

@@ -9,20 +9,19 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = [ "x86_64-linux" ];
-      imports =
-        [
-          ./hosts
-          ./home/profiles/home-manager.nix
-          # To import a flake module
-          # 1. Add foo to inputs
-          # 2. Add foo as a parameter to the outputs function
-          # 3. Add here: foo.flakeModule
+      imports = [
+        ./hosts
+        ./home/profiles/home-manager.nix
+        # To import a flake module
+        # 1. Add foo to inputs
+        # 2. Add foo as a parameter to the outputs function
+        # 3. Add here: foo.flakeModule
 
-        ]
-        ++ [
-          inputs.flake-root.flakeModule
-          inputs.treefmt-nix.flakeModule
-        ];
+      ]
+      ++ [
+        inputs.flake-root.flakeModule
+        inputs.treefmt-nix.flakeModule
+      ];
       flake = {
         overlays.default = selfPkgs.overlay;
       };
