@@ -153,15 +153,15 @@
     # };
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprland-contrib.url = "github:hyprwm/contrib";
-    quickshell = {
-      url = "github:outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell"; # Use same quickshell version
-    };
+    # quickshell = {
+    #   url = "github:outfoxxed/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # noctalia = {
+    #   url = "github:noctalia-dev/noctalia-shell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.quickshell.follows = "quickshell"; # Use same quickshell version
+    # };
 
     # stylix.url = "github:danth/stylix";
     nixd.url = "github:nix-community/nixd";

@@ -66,6 +66,7 @@
       scrcpy
       qbittorrent-enhanced
       xwayland-satellite # niri need
+      # inputs.noctalia.packages.${system}.default
     ];
     sessionVariables.NIXOS_OZONE_WL = "1";
   };

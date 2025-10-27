@@ -1,19 +1,27 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  mi,
+  ...
+}:
 {
   # configure options
   programs.noctalia-shell = {
-    enable = true;
+    enable = false;
     settings = {
       # configure noctalia here; defaults will
       # be deep merged with these attributes.
-      colorSchemes.predefinedScheme = "Monochrome";
+      colorSchemes.predefinedScheme = "Catppuccin";
       general = {
-        avatarImage = "/home/drfoobar/.face";
+        avatarImage = "/home/${mi.userName}/Pictures/GxGb5-1aYAAJlaI-kitte2.png";
         radiusRatio = 0.2;
       };
       location = {
-        monthBeforeDay = true;
-        name = "Marseille, France";
+        name = "Tokyo";
+        weatherEnabled = true;
+        useFahrenheit = false;
+        use12hourFormat = false;
+        showWeekNumberInCalendar = false;
       };
     };
     # this may also be a string or a path to a JSON file,
