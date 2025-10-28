@@ -67,9 +67,14 @@ in
 
   programs.nvim = {
     enable = true;
-    package = inputs.nvim-flake.packages.${pkgs.system}.lazynvim;
+    package = pkgs.neovim;
     defaultEditor = true;
     enableFishIntegration = true;
     withNixLSP = true;
   };
+
+  home.packages = with pkgs; [
+    bash-language-server
+    lua-language-server
+  ];
 }

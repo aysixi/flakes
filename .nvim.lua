@@ -1,11 +1,12 @@
 -- vim.o.number = false
-local nvim_lsp = require("lspconfig")
+local nvim_lsp = vim.lsp.config
 local nixos_options_expr =
   'let flake = builtins.getFlake ("git+file://" + toString ./.); in flake.nixosConfigurations.nixos.options // flake.nixosConfigurations.wsl.options'
 local home_manager_options_expr = nixos_options_expr .. ".home-manager.users.type.getSubOptions [ ]"
 local flake_parts_options_expr =
   'let flake = builtins.getFlake ("git+file://" + toString ./.); in flake.debug.options // flake.currentSystem.options'
-nvim_lsp.nixd.setup({
+vim.lsp.enable("nixd")
+nvim_lsp("nixd", {
   cmd = { "nixd" },
   settings = {
     nixd = {

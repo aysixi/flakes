@@ -1,14 +1,15 @@
 let
   directoryContents = builtins.readDir ./.;
   excludeDirs = [
+    "dbclient"
+    "gimp"
+    "neofetch"
+    "noctalia-shell"
+    "prismlauncher"
     "waybar"
     "wsl"
-    "gimp"
-    "zathura"
     "youtube-tui"
-    "prismlauncher"
-    "dbclient"
-    "neofetch"
+    "zathura"
   ];
   directories = builtins.filter (
     name: directoryContents."${name}" == "directory" && !(builtins.elem name excludeDirs)

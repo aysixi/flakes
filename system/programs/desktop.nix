@@ -52,6 +52,7 @@
     systemPackages = with pkgs; [
       libnotify
       wl-clipboard
+      xclip
       wlr-randr
       xorg.xeyes
       nemo
