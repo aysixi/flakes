@@ -12,6 +12,7 @@
         if !enableLanzaboote then
           {
             enable = true;
+            editor = false;
             consoleMode = "auto";
           }
         else

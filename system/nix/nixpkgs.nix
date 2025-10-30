@@ -16,6 +16,8 @@
       inputs.yazi.overlays.default
       inputs.rust-overlay.overlays.default
 
+      inputs.nur.overlays.default
+
       (final: prev: {
         aysixi = inputs.aysixi.packages."${prev.system}";
       })

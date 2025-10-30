@@ -8,11 +8,14 @@
       ripgrep
     ];
     sessionVariables = {
-      BAT_THEME = "mocha";
+      BAT_THEME = "Catppuccin Mocha";
     };
     file.".config/bat/themes/mocha.tmTheme".source = ./mocha.tmTheme;
   };
   programs = {
     fzf.enable = true;
   };
+  imports = [
+    ./s.nix
+  ];
 }

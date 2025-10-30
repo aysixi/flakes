@@ -1,6 +1,15 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 {
   programs = {
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
     git = {
       enable = true;
       # package = pkgs.emptyDirectory;
@@ -23,6 +32,8 @@
         init = {
           defaultBranch = "main";
         };
+        delta.features = "Catppuccin Mocha";
+        diff.renames = false;
       };
     };
   };
